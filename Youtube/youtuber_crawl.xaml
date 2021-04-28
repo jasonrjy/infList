@@ -35,7 +35,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="19">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="38">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -55,9 +55,20 @@
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart DisplayName="youtuber_crawl" sap:VirtualizedContainerService.HintSize="644,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+  <Flowchart DisplayName="youtuber_crawl" sap:VirtualizedContainerService.HintSize="644,661" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="x:String" Name="Youtuber" />
       <Variable x:TypeArguments="x:String" Name="Youtuber_URL" />
@@ -72,10 +83,11 @@
         <av:Size x:Key="ShapeSize">60,75</av:Size>
         <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,109</av:PointCollection>
         <x:Double x:Key="Width">610</x:Double>
+        <x:Double x:Key="Height">625</x:Double>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID6</x:Reference>
+      <x:Reference>__ReferenceID7</x:Reference>
     </Flowchart.StartNode>
     <FlowStep x:Name="__ReferenceID0">
       <sap:WorkflowViewStateService.ViewState>
@@ -128,10 +140,10 @@
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">70,364.5</av:Point>
               <av:Size x:Key="ShapeSize">200,51</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">170,415.5 170,445.5 180,445.5 180,469</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">170,415.5 250,415.5 250,424.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (36) YouTube" sap:VirtualizedContainerService.HintSize="434,1798" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" Version="V1">
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (36) YouTube" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" Version="V1">
             <uix:NApplicationCard.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
@@ -179,7 +191,7 @@
                     <uix:NGetText.Target>
                       <uix:TargetAnchorable BrowserURL="https://www.youtube.com/watch?v=DtX6ckOlTBA" DesignTimeRectangle="1095, 469, 24, 17" FriendlyName="'141'" FullSelectorArgument="&lt;webctrl id='text' parentid='top-level-buttons' tag='YT-FORMATTED-STRING' /&gt;" FuzzySelectorArgument="&lt;webctrl id='text' parentid='top-level-buttons' tag='YT-FORMATTED-STRING' type='' /&gt;" InformativeScreenshot="44d16e382595ab1327b4e12d36b71848.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(14) 노트북 저렴하게 구매하기 2편 - 윈도우와 오피스는 어떻게 하나요? - YouTube' /&gt;" SearchSteps="FuzzySelector">
                         <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                             <uix:Target DesignTimeRectangle="1063, 463, 28, 28" FriendlyName="'YT-ICON'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;ytd-app&amp;gt;div&amp;gt;ytd-page-manager&amp;gt;ytd-watch-flexy&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ytd-video-primary-info-renderer&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ytd-menu-renderer&amp;gt;div&amp;gt;ytd-toggle-button-renderer&amp;gt;a&amp;gt;yt-icon-button&amp;gt;button&amp;gt;yt-icon' parentid='button' tag='YT-ICON' /&gt;" FuzzySelectorArgument="&lt;webctrl css-selector='body&amp;gt;ytd-app&amp;gt;div&amp;gt;ytd-page-manager&amp;gt;ytd-watch-flexy&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ytd-video-primary-info-renderer&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ytd-menu-renderer&amp;gt;div&amp;gt;ytd-toggle-button-renderer&amp;gt;a&amp;gt;yt-icon-button&amp;gt;button&amp;gt;yt-icon' parentid='button' tag='YT-ICON' type='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADXSURBVEhL7dQxDoMgFMbx3n9ycoLJjQvoAdyY3Ny8gBdgsvmalDz1owXTx9A4/BcFflHje4QQtprd4MemadqGYaD3Ul0GgTVN88p7T9ewLoESQ33f03WsYvCIIbUnZBhaloWuZ2WDKQyx9amywHmeKYScc3RPqiywbVuKfctae3rdO/C4IXW9JKDSUAeRNP4PxPeXhjo4jmM8B6mD67rGc5AqyGasKshGnhrYdV3cL1MDMXvl2e+ywNLRdvwVZFkgvoUx5nSfBQzDXp4r24E1usGfVxkM2xMGzbF+GYX+zgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
@@ -193,7 +205,7 @@
                     <uix:NGetText.Target>
                       <uix:TargetAnchorable BrowserURL="https://www.youtube.com/watch?v=DtX6ckOlTBA" DesignTimeRectangle="1169, 469, 8, 17" FriendlyName="'0'" FullSelectorArgument="&lt;webctrl aaname='0' id='text' parentid='top-level-buttons' tag='YT-FORMATTED-STRING' /&gt;" FuzzySelectorArgument="&lt;webctrl id='text' parentid='top-level-buttons' tag='YT-FORMATTED-STRING' type='' /&gt;" InformativeScreenshot="2ef9b83c407187c1ce381e696f728569.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(14) 노트북 저렴하게 구매하기 2편 - 윈도우와 오피스는 어떻게 하나요? - YouTube' /&gt;" SearchSteps="FuzzySelector">
                         <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                             <uix:Target DesignTimeRectangle="1137, 463, 28, 28" FriendlyName="'YT-ICON'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;ytd-app&amp;gt;div&amp;gt;ytd-page-manager&amp;gt;ytd-watch-flexy&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ytd-video-primary-info-renderer&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ytd-menu-renderer&amp;gt;div&amp;gt;ytd-toggle-button-renderer&amp;gt;a&amp;gt;yt-icon-button&amp;gt;button&amp;gt;yt-icon' idx='2' parentid='button' tag='YT-ICON' /&gt;" FuzzySelectorArgument="&lt;webctrl css-selector='body&amp;gt;ytd-app&amp;gt;div&amp;gt;ytd-page-manager&amp;gt;ytd-watch-flexy&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ytd-video-primary-info-renderer&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ytd-menu-renderer&amp;gt;div&amp;gt;ytd-toggle-button-renderer&amp;gt;a&amp;gt;yt-icon-button&amp;gt;button&amp;gt;yt-icon' type='' parentid='button' tag='YT-ICON' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD5SURBVEhL7ZQrEoRADET3/goFBi6AwqE4AQqH4wIo3KjZapGt+SRFAhRsba14JqT71fB7Oef8nfyFl/M9wmmafFVVviiKXZqm8cuyfLLp9bCXFW7bppYRkFI+vRZ2s0KcLg1poLw0B6ywrusspIHy0hxkQjyLNKCFOqQ5yIRd12UBLdQhzUEkXNc1W7ZAPdIcRMJhGLJlC9QjzUEkLMsyW7ZAPdIcRMJ00YrUEzqeFd5+S/ENHv3okQu7JCLhHm3bsjIwzzObSTEJORHAv5fb51ALpV+eRQbUwnEcT8uAWtj3/WkZOHTCozJgemlwyjMyYBJewa8LnX8DFmyxKsK74tsAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
@@ -207,7 +219,7 @@
                     <uix:NGetText.Target>
                       <uix:TargetAnchorable BrowserURL="https://www.youtube.com/watch?v=DtX6ckOlTBA" DesignTimeRectangle="143, 713, 18, 19" ElementType="Text" FriendlyName="'41'" FullSelectorArgument="&lt;webctrl aaname='41' parentid='count' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='count' tag='SPAN' type='' /&gt;" InformativeScreenshot="81919a52ce85c1e88ad28e1a467a7751.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(14) 노트북 저렴하게 구매하기 2편 - 윈도우와 오피스는 어떻게 하나요? - YouTube' /&gt;" SearchSteps="FuzzySelector">
                         <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                             <uix:Target DesignTimeRectangle="107, 713, 36, 19" ElementType="Text" FriendlyName="'댓글'" FullSelectorArgument="&lt;webctrl aaname='댓글 ' parentid='count' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='댓글 ' parentid='count' tag='SPAN' type='' check:text='댓글' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAXCAYAAAB50g0VAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEFSURBVEhL7ZQ9DoMgFICbeIseo0ch8RIdewLDUfAA3TviKbo4sDF06Mj0SkFTSp/wGq2axuFLjDz04/2wM8bAmtkEx/Jngg2HouAg++dSgIpjLLIqbFyGgb0xkaACUSY+RhTM8sVeVJA34buAKQUria9FbIIYqma/FER60yGBh2tkugMPsEyJyVxxQeykrFazC+rzMRbMQBQk3YO5Hrxd4LQ/UAV9f72VfkQGKUPiYuw/aYKtAGaDXZmx9YhJMnjXoLWmCb5+mJ64nmc89TA5soJezov5tOclZxLs7rW4z9ygJK4iC6nEBQPR4vtDPgW7fstlqpdIiU4BbUgWZBMcy8oFDTwASPHN7dgTVl0AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
@@ -228,57 +240,63 @@
             </uix:NApplicationCard.TargetApp>
           </uix:NApplicationCard>
           <FlowStep.Next>
-            <FlowStep x:Name="__ReferenceID4">
+            <FlowStep x:Name="__ReferenceID6">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">80,469</av:Point>
-                  <av:Size x:Key="ShapeSize">200,22</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">180,491 180,541</av:PointCollection>
+                  <av:Point x:Key="ShapeLocation">150,424.5</av:Point>
+                  <av:Size x:Key="ShapeSize">200,51</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">250,475.5 250,505.5 330,505.5 330,509</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="YoutubeInfo">
-                <ui:AddQueueItem.ItemInformation>
-                  <InArgument x:TypeArguments="x:String" x:Key="Title">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="videoDT(0).ToString" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="View">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="videoDT(1).ToString" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="UpdateDate">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="videoDT(2).ToString" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Like">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="videoDT(3).ToString" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Dislike">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="videoDT(4).ToString" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Comment">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="videoDT(5).ToString" />
-                  </InArgument>
-                </ui:AddQueueItem.ItemInformation>
-              </ui:AddQueueItem>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[videoDT]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
               <FlowStep.Next>
-                <FlowStep x:Name="__ReferenceID5">
+                <FlowStep x:Name="__ReferenceID4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:Point x:Key="ShapeLocation">80,541</av:Point>
-                      <av:Size x:Key="ShapeSize">200,51</av:Size>
+                      <av:Point x:Key="ShapeLocation">230,509</av:Point>
+                      <av:Size x:Key="ShapeSize">200,22</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">330,531 330,621 60,621 60,511 180,511 180,541</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful" TransactionItem="[KeywordDT]">
-                    <ui:SetTransactionStatus.Analytics>
-                      <scg:Dictionary x:TypeArguments="x:String, InArgument" />
-                    </ui:SetTransactionStatus.Analytics>
-                    <ui:SetTransactionStatus.Output>
-                      <scg:Dictionary x:TypeArguments="x:String, InArgument" />
-                    </ui:SetTransactionStatus.Output>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:SetTransactionStatus>
+                  <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="YoutubeInfo">
+                    <ui:AddQueueItem.ItemInformation>
+                      <InArgument x:TypeArguments="x:String" x:Key="Title">[videoDT(0).ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="View">[videoDT(1).ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="UpdateDate">[videoDT(2).ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Like">[videoDT(3).ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Dislike">[videoDT(4).ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Comment">[videoDT(5).ToString]</InArgument>
+                    </ui:AddQueueItem.ItemInformation>
+                  </ui:AddQueueItem>
+                  <FlowStep.Next>
+                    <FlowStep x:Name="__ReferenceID5">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <av:Point x:Key="ShapeLocation">80,541</av:Point>
+                          <av:Size x:Key="ShapeSize">200,51</av:Size>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful" TransactionItem="[KeywordDT]">
+                        <ui:SetTransactionStatus.Analytics>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                        </ui:SetTransactionStatus.Analytics>
+                        <ui:SetTransactionStatus.Output>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                        </ui:SetTransactionStatus.Output>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:SetTransactionStatus>
+                    </FlowStep>
+                  </FlowStep.Next>
                 </FlowStep>
               </FlowStep.Next>
             </FlowStep>
@@ -319,7 +337,7 @@
     </FlowDecision>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
-    <FlowStep x:Name="__ReferenceID6">
+    <FlowStep x:Name="__ReferenceID7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">200,109</av:Point>
@@ -340,5 +358,6 @@
     </FlowStep>
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
+    <x:Reference>__ReferenceID6</x:Reference>
   </Flowchart>
 </Activity>
