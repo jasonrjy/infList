@@ -226,7 +226,7 @@
                           </Sequence>
                         </ui:InterruptibleDoWhile.Body>
                         <ui:InterruptibleDoWhile.Condition>
-                          <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="pgDownCount &lt;= limitpgDown" />
+                          <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="pgDownCount &lt;= limitpgDown" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_6" />
                         </ui:InterruptibleDoWhile.Condition>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -646,7 +646,7 @@ Select Convert.ToString(GroupA.Count)).ToList()]</InArgument>
                                   <OutArgument x:TypeArguments="sd:DataRow[]">[data_to_del]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="sd:DataRow[]">[videoDT.Select("[Upload] like '%달 전%' ")]</InArgument>
+                                  <InArgument x:TypeArguments="sd:DataRow[]">[videoDT.Select("[Upload] like '%개월 전%' ")]</InArgument>
                                 </Assign.Value>
                               </Assign>
                               <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For each" sap:VirtualizedContainerService.HintSize="334,368" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[data_to_del]">
