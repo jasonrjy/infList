@@ -88,7 +88,7 @@
       <AssemblyReference>ChangeColumnDatatype.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="youtube_step3" sap:VirtualizedContainerService.HintSize="748,11069" sap2010:WorkflowViewState.IdRef="Sequence_8">
+  <Sequence DisplayName="youtube_step3" sap:VirtualizedContainerService.HintSize="748,11224" sap2010:WorkflowViewState.IdRef="Sequence_8">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="keywordDT" />
       <Variable x:TypeArguments="sd:DataTable" Name="tempResult" />
@@ -118,13 +118,13 @@
       </sap:WorkflowViewStateService.ViewState>
       <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[keywordDT]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Sheet1" WorkbookPath="keywords.xlsx" />
     </Sequence>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[keywordDT]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="706,10758" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[keywordDT]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="706,10913" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="672,10638" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="672,10793" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -626,7 +626,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                 </ui:ForEachRow.Body>
               </ui:ForEachRow>
             </Sequence>
-            <Sequence DisplayName="Top Youtuber Search" sap:VirtualizedContainerService.HintSize="630,6756" sap2010:WorkflowViewState.IdRef="Sequence_43">
+            <Sequence DisplayName="Top Youtuber Search" sap:VirtualizedContainerService.HintSize="630,6911" sap2010:WorkflowViewState.IdRef="Sequence_43">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Int32" Name="loop_counter" />
                 <Variable x:TypeArguments="x:Int32" Name="prev_count" />
@@ -1173,6 +1173,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                   </ActivityAction>
                 </ui:ForEachRow.Body>
               </ui:ForEachRow>
+              <ui:WriteRange AddHeaders="True" DataTable="[uniqueDT]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="588,115" sap2010:WorkflowViewState.IdRef="WriteRange_4" SheetName="[row(&quot;Keyword&quot;).ToString]" StartingCell="A1" WorkbookPath="keywords.xlsx" />
             </Sequence>
             <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="630,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
               <ui:CommentOut.Body>
