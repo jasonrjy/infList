@@ -88,7 +88,7 @@
       <AssemblyReference>ChangeColumnDatatype.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="youtube_step3" sap:VirtualizedContainerService.HintSize="748,11224" sap2010:WorkflowViewState.IdRef="Sequence_8">
+  <Sequence DisplayName="youtube_step3" sap:VirtualizedContainerService.HintSize="748,11530" sap2010:WorkflowViewState.IdRef="Sequence_8">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="keywordDT" />
       <Variable x:TypeArguments="sd:DataTable" Name="tempResult" />
@@ -110,6 +110,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="706,266" sap2010:WorkflowViewState.IdRef="Comment_1" Text="tempResult = 검색 결과&#xD;&#xA;&#xD;&#xA;uniqueDT = 유튜버 count&#xD;&#xA;Youtuber, Youtuber_URL, Repeat_Count, ER_Avg&#xD;&#xA;&#xD;&#xA;////&#xD;&#xA;&#xD;&#xA;videoDT = 유튜버별 동영상 리스트&#xD;&#xA;Title, View, Upload&#xD;&#xA;&#xD;&#xA;detailVideoDT = 유튜버별 동영상 상세 정보&#xD;&#xA;Title View Like Dislist Comment ER(int)&#xD;&#xA;" />
     <Sequence DisplayName="Search" sap:VirtualizedContainerService.HintSize="706,179" sap2010:WorkflowViewState.IdRef="Sequence_24">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
