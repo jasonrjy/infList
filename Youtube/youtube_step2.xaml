@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="step2" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1149,570" sap2010:WorkflowViewState.IdRef="step2_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="시퀀스" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="907,3167" sap2010:WorkflowViewState.IdRef="시퀀스_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -25,17 +25,25 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Xml.Serialization</x:String>
-      <x:String>UiPath.Excel.Activities</x:String>
       <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
-      <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>UiPath.UIAutomationNext.Enums</x:String>
-      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>System.Security</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>UiPath.UIAutomationNext.Activities</x:String>
       <x:String>UiPath.Platform.ObjectLibrary</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.Shared.ObjectLibrary</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -57,8 +65,8 @@
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
-      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
@@ -73,87 +81,166 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="youtube_step2" sap:VirtualizedContainerService.HintSize="552,1365" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="youtube_step1" sap:VirtualizedContainerService.HintSize="606,2962" sap2010:WorkflowViewState.IdRef="Sequence_8">
     <Sequence.Variables>
-      <Variable x:TypeArguments="sd:DataTable" Name="urlDT" />
+      <Variable x:TypeArguments="sd:DataTable" Name="keywordDT" />
       <Variable x:TypeArguments="sd:DataTable" Name="tempResult" />
+      <Variable x:TypeArguments="x:Int32" Name="elementcount" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="pgDownCount" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[urlDT]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="510,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="노트북" WorkbookPath="keywords.xlsx" />
-    <ui:BuildDataTable DataTable="[tempResult]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="510,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;viewCount&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;likeCount&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[urlDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="510,1047" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[keywordDT]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="564,87" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Sheet1" WorkbookPath="keywords.xlsx" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[keywordDT]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="564,2743" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="476,927" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="530,2623" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (36) YouTube" sap:VirtualizedContainerService.HintSize="434,835" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" Version="V1">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (36) YouTube" sap:VirtualizedContainerService.HintSize="488,2531" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" Version="V1">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="376,619" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="likeCount" />
-                      <Variable x:TypeArguments="x:String" Name="viewCount" />
-                      <Variable x:TypeArguments="x:String" Name="variable" />
-                    </Sequence.Variables>
+                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="454,2315" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="innerText" DisplayName="Get Attribute 'YT-FORMATTED-STRING  te...'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
-                      <ui:GetAttribute.Result>
-                        <OutArgument x:TypeArguments="x:String">[likeCount]</OutArgument>
-                      </ui:GetAttribute.Result>
-                      <ui:GetAttribute.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="677f5d1a-d406-4325-ba8b-a872f695f44d" InformativeScreenshot="0908733097736d8e544d385db8794ac1" Selector="&lt;webctrl id='text' parentid='top-level-buttons' tag='YT-FORMATTED-STRING' /&gt;">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:GetAttribute.Target>
-                    </ui:GetAttribute>
-                    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="innerText" DisplayName="Get Attribute 'SPAN'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="GetAttribute_4">
-                      <ui:GetAttribute.Result>
-                        <OutArgument x:TypeArguments="x:String">[viewCount]</OutArgument>
-                      </ui:GetAttribute.Result>
-                      <ui:GetAttribute.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="27f48f4b-5780-419a-bbfc-75c8783daa3c" InformativeScreenshot="772227921bff9586eda7d1f74f27cb43" Selector="&lt;webctrl parentid='count' tag='SPAN' /&gt;">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:GetAttribute.Target>
-                    </ui:GetAttribute>
-                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{likeCount, viewCount}]" DataTable="[tempResult]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
-                    <ui:WriteRange AddHeaders="False" DataTable="[tempResult]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,115" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="test" StartingCell="A1" WorkbookPath="keywords.xlsx" />
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'INPUT  search'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="412,226" sap2010:WorkflowViewState.IdRef="NTypeInto_2" Text="[row(&quot;Keyword&quot;).ToString]">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.youtube.com/" DesignTimeRectangle="1163, 190, 1132, 52" ElementType="InputBox" FriendlyName="'INPUT  search'" FullSelectorArgument="&lt;webctrl tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' aaname='' /&gt;" ImageBase64="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" InformativeScreenshot="f5165586b7a2fbae3c24882f5be763e1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(36) YouTube' /&gt;" SearchSteps="FuzzySelector, Image">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="2291, 184, 130, 64" ElementType="Button" FriendlyName="'Search'" FullSelectorArgument="&lt;webctrl id='search-icon-legacy' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='search-icon-legacy' tag='BUTTON' type='' aaname='                            Search         ' check:text='Search' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIYAAABECAYAAABEWU0uAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAAMcSURBVHhe7Z0rj/JQEIb713GLAofEgQKHA4fEkSJIQOCQ3G/i7PfyMZtDO+VumHknebJke9qkzMOcS0/SJDAYSlAMhhrJYDAIYDgcEoekaRomk0lYLpcXJf4HxSB/xHIki8UiADm43++JIyDDdDo95x6VQyJZrVbngxTDL5L/0Wh00eKfGJvNJqzXa4rhHMm/RIJ/brdbiuGcnBiHwyHsdjuK4ZycGMfj8epA9gTig5wYp9Pp6kD2BOIDikFUKAZRoRhEhWIQFYpBVCgGUaEYRIViEBW3Yszn89Dv90Oz2QzVajWUSqUz9Xo9tFot9z8Kd2Jgr0mv1/sT4RYQBpuWtOtYx5UYs9ks1Go1VYJboIJAKO2aVnEjBqT4+fnJJb3RaIRut3uuDOhaOp1OqFQquXboYrTrWsWFGPi1ZysFhMA4Q2sPcO/lcvnqHEijtbWICzFQEeIEt9tttV0WTajxeKy2tYZ5MVAV4sSiUmjtisD5ceXw0qWYFwPjhliMW91HEdmK42Egal4MVAhJ6LPVQoAIsRgeprDmxYhnGPjla20eIR5rvHOdb8G8GJJM8M79YGwh13l08PrNuBID4w2tzSPEYniYtpoX41MJ/VSX9C2YFwNlXxKKZx9am3tg1VSuASx8L/cwLwbu4d2kxnJhTUNrYw3Jv4Q5MUDcDeB5yTPrEJiayrnAQzcCXIiRTS6mno8sdOG8+MEbqsUrC2TfiAsxQNwdACQc+zK06oExBR61x+2Bpe/jHm7EgADxDCUGFQTHQLybKwvaYccXl8QNiSFgyqolvQh0H/ge4pVPfLYuhzsxAB6dF1UPAUJAIhlTxM9cgHU5XIohIOkYYGKmgTEIRMBn7b4hQVw1rMvhWoxn8SQHxXgSL3JQjBfwIAfFeBHrclCMNyiSQ2v7bVCMN8nKYWXbH8X4ACKHFSkAxSAqFIOoUAyiQjGICsUgKhSDqFAMokIxiArFICoUg6hQDKJCMYgKxSAqFIOo5MTgy/KI+kJevl7TN4Wv8MZmEyBiEL9AEgmK4Zw0Tc+VIpYCkVz+MhhXQTEYSoTwCyZylKTYzTvqAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NClick ClickType="Single" DisplayName="Click 'Search'" sap:VirtualizedContainerService.HintSize="412,166" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.youtube.com/" DesignTimeRectangle="2291, 184, 130, 64" ElementType="Button" FriendlyName="'Search'" FullSelectorArgument="&lt;webctrl id='search-icon-legacy' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='search-icon-legacy' tag='BUTTON' type='' aaname='                            Search         ' check:text='Search' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIYAAABECAYAAABEWU0uAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAAMcSURBVHhe7Z0rj/JQEIb713GLAofEgQKHA4fEkSJIQOCQ3G/i7PfyMZtDO+VumHknebJke9qkzMOcS0/SJDAYSlAMhhrJYDAIYDgcEoekaRomk0lYLpcXJf4HxSB/xHIki8UiADm43++JIyDDdDo95x6VQyJZrVbngxTDL5L/0Wh00eKfGJvNJqzXa4rhHMm/RIJ/brdbiuGcnBiHwyHsdjuK4ZycGMfj8epA9gTig5wYp9Pp6kD2BOIDikFUKAZRoRhEhWIQFYpBVCgGUaEYRIViEBW3Yszn89Dv90Oz2QzVajWUSqUz9Xo9tFot9z8Kd2Jgr0mv1/sT4RYQBpuWtOtYx5UYs9ks1Go1VYJboIJAKO2aVnEjBqT4+fnJJb3RaIRut3uuDOhaOp1OqFQquXboYrTrWsWFGPi1ZysFhMA4Q2sPcO/lcvnqHEijtbWICzFQEeIEt9tttV0WTajxeKy2tYZ5MVAV4sSiUmjtisD5ceXw0qWYFwPjhliMW91HEdmK42Egal4MVAhJ6LPVQoAIsRgeprDmxYhnGPjla20eIR5rvHOdb8G8GJJM8M79YGwh13l08PrNuBID4w2tzSPEYniYtpoX41MJ/VSX9C2YFwNlXxKKZx9am3tg1VSuASx8L/cwLwbu4d2kxnJhTUNrYw3Jv4Q5MUDcDeB5yTPrEJiayrnAQzcCXIiRTS6mno8sdOG8+MEbqsUrC2TfiAsxQNwdACQc+zK06oExBR61x+2Bpe/jHm7EgADxDCUGFQTHQLybKwvaYccXl8QNiSFgyqolvQh0H/ge4pVPfLYuhzsxAB6dF1UPAUJAIhlTxM9cgHU5XIohIOkYYGKmgTEIRMBn7b4hQVw1rMvhWoxn8SQHxXgSL3JQjBfwIAfFeBHrclCMNyiSQ2v7bVCMN8nKYWXbH8X4ACKHFSkAxSAqFIOoUAyiQjGICsUgKhSDqFAMokIxiArFICoUg6hQDKJCMYgKxSAqFIOo5MTgy/KI+kJevl7TN4Wv8MZmEyBiEL9AEgmK4Zw0Tc+VIpYCkVz+MhhXQTEYSoTwCyZylKTYzTvqAAAAAElFTkSuQmCC" InformativeScreenshot="ea6cdedda4c44f7a2a68c12d540fcac1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(36) YouTube' /&gt;" SearchSteps="FuzzySelector, Image">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="2336, 196, 40, 40" FriendlyName="'YT-ICON'" FullSelectorArgument="&lt;webctrl parentid='search-icon-legacy' tag='YT-ICON' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='search-icon-legacy' tag='YT-ICON' type='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAAIESURBVFhH7Zevr8IwEIDfv44DBQ6JGwocDtwkDjeJQ+Lm+vKR9OVeuXXtbmUhmfgSEq7t1+v1x37atnXfxCxcmlm4NLNwaQYJPx4PV9e12+/3brPZuMVi8WK327nD4eBut5vabgyyhJ/Pp7tcLn+CMZjI9XpV+7GQLHy/3912u1XlYpBxJqr1OYQkYWSXy+WbTFVV7nw+vzJJiZxOJ7der9/iKBWt3yH0CpOdMLOIUsdaPFDDq9XqXxsmo8Xm0itMBuXAx+NRjQvRJto0jRqbQ1SYLMoByawW1wXtZabHKI2oMHUphWNl0EW4QtYNGBUmo36g3Ox6EJTC1qMuKix3PJnSYlKQtWzpB6LCfhCw3F7Uru8nddN2kSxMPWsxKUhh6/EWFR5roLFKC6LCLJ8fiLeBFtMHt6TvA6wPo6gwnVsHk5PmTNZicogKg1xO3hM55yhHmG8L1nKAXuFwUI6olAuEdvLBRHaHXDwhvcIglxUQ4V2sZZua5Ukp48Fau54kYcTkiSEh4/wH8usjhDi+UIpezSEcbZpMF5QBmZU3Hb8t0lnCwBOxK9seRJmcr1n5JgGLdLawBxk2FjufGkeQ31qtIiezbJEeLJzLWNIfE4YxpD8qDFbpjwuDRXoSYeiS1mIlkwlDKJ3y+TSpMHjpFFmYXDiXWbg0s3BpZuHSfJlw634B1pc+oPVJzsMAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ClickType="Single" DisplayName="Click '필터'" sap:VirtualizedContainerService.HintSize="412,166" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.youtube.com/results?search_query=%EB%A7%A5%EB%B6%81" DesignTimeRectangle="1277, 282, 36, 36" FriendlyName="'YT-ICON'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;ytd-app&amp;gt;div&amp;gt;ytd-page-manager&amp;gt;ytd-search&amp;gt;div&amp;gt;ytd-two-column-search-results-renderer&amp;gt;div&amp;gt;ytd-section-list-renderer&amp;gt;div&amp;gt;div&amp;gt;ytd-search-sub-menu-renderer&amp;gt;div&amp;gt;div&amp;gt;ytd-toggle-button-renderer&amp;gt;a&amp;gt;tp-yt-paper-button&amp;gt;yt-icon' parentid='button' tag='YT-ICON' /&gt;" FuzzySelectorArgument="&lt;webctrl css-selector='body&amp;gt;ytd-app&amp;gt;div&amp;gt;ytd-page-manager&amp;gt;ytd-search&amp;gt;div&amp;gt;ytd-two-column-search-results-renderer&amp;gt;div&amp;gt;ytd-section-list-renderer&amp;gt;div&amp;gt;div&amp;gt;ytd-search-sub-menu-renderer&amp;gt;div&amp;gt;div&amp;gt;ytd-toggle-button-renderer&amp;gt;a&amp;gt;tp-yt-paper-button&amp;gt;yt-icon' parentid='button' tag='YT-ICON' type='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAEPSURBVFhH7ZZRCoMwEER7VE+jl9HTeJp8pYxQGGxmu2sUjM3Hg3ys8TkTxVdKKd+ZLlhLF6ylC67rmpdl2cC6NGNxueA8z3kYhg2sSzMW7QpyNVG4Shacpunn/B4pyBtH4aQ8+1jJtiuI2HHhEVTF4zh+zYJDFZ8FBDxJKZ4niDo8b98HPiqe+T1hwdpEorQryFUy+NiWBNW8B6t6KchJKVjQM6+wmmhXkN8+Bh/b0sZq3sOhihXY0PPkZ/E8Qa6Sq8Ha81ZGCQsqrkq2XUGuTMFVsqD6c1ZYR0IK8g0VnJRnXmEl3q4gYseFFqpi9eesOFRxFNzIk0iU/xHkI2FVFuU0wavogrV0wVpuLpjyG/QUk3tyFqV5AAAAAElFTkSuQmCC" InformativeScreenshot="530ebdd46f2bfd04779ca351332ed209.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(4) 맥북 - YouTube' /&gt;" SearchSteps="FuzzySelector, Image">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="1325, 286, 42, 28" FriendlyName="'필터'" FullSelectorArgument="&lt;webctrl aaname='필터' id='text' parentid='button' tag='YT-FORMATTED-STRING' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='필터' id='text' parentid='button' tag='YT-FORMATTED-STRING' type='' check:text='필터' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAC4AAAAgCAYAAABts0pHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAEOSURBVFhH7ZY7DoJAEEA96sbS2gIKG+MFiImNRzABS61ttjHxCFhYeQCz1bh8QhaYxeXjsJts8Zr58RimYCGEABfx4tR4cWq8ODUTiaeQBAxYkECK5ofAIWJy5p4jOUycR8CyBhMqURvEB/FLvMw3X7xJTXKg+Ou8yYdFXI2XAssD3JVaY3GNBM7QjZcng4q3BG0SfxxhpRPfXeGt1lol/kwglI3by1uJ64bZJP655Y1hnCrxYtj6pMYyZhcvH5A1mJKfjaE41i8plqOp6b3xXhiKk5zKpBCLp3HY/nRduLdxZ0/FMvHJTwXraVKJjhaPgCO5/+PFqaG8cUn9p2wMI8TnxVnxbrw4NV6cFgFfm289jGnC+e4AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ClickType="Single" DisplayName="Click '구분'" sap:VirtualizedContainerService.HintSize="412,166" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.youtube.com/results?search_query=%EB%A7%A5%EB%B6%81" DesignTimeRectangle="1606, 437, 63, 28" FriendlyName="'동영상'" FullSelectorArgument="&lt;webctrl aaname='동영상' parentid='label' tag='YT-FORMATTED-STRING' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='동영상' parentid='label' tag='YT-FORMATTED-STRING' type='' check:text='동영상' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEMAAAAgCAYAAABJqsWHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAMiSURBVGhD7Zc9a9tQFIb7U4VBBIwRhHiwBmEIhngQBREwpaLEiztksDqo0EBwCM6gxZAUihZBVIq9iCIoguDp7bmR7NzIR/5qEuJUwzPY5/jo3kfnfvjddDpFSUopQ6KUIVHKkChlSJQyJEoZEgUyQjgNBYqyPno/ZOrkSMYYnhxCr6np7yoqtKYF93vE5HuwRM6xx8S2IZvTknrLZTzZQIiYJldToDa78G6T9LskRnDZQZ2kGF/yMjeT4R1TbsNByMRSXo2MCGctMdhThHeL8dizUM06bIE3JyPooU4TMy+yjlgge977IZL5d5t0RoKBuSsy6M0rig7nJxPLuH+zVRs38+82keGjt0+5FQse03kp/ypj1qrrsOytPLcMP+08MQ7zIuZzuDnlahfI4An7+spJsdBgNTHQyxXL5NHg1pWR7UctF4NPVRJqYRhzeVt3Bs/WMsRADBrIM2ygYd+g5WHAuaXPdxGGxySkZmIwyee+GhnEZACTjtbqkYObSf5oraL9bfOjdXxhksQqLE9eGjFGJzrUSh2d8wDRXP5GMrLk/JvZgsILGHvpsjEIuHW+RIao86FOv9fQueIubFNE3x2093XYo1ntJ+6Ml6VYRjyyoe+34QZFexDHTst4eZbLoHb0+l2YTQ3aHlnNloFA1TQYZg8DP5IuSuuSYHztomca0LRsyczYo2c1TfTOfUQJ91sOquc56LR0aLMlmKHWNOitDpwref/gKZSR+KcwVCrWsOFeU6FYbskEcRSQKAu6yGnSHWPFg+bcUbs2acCqDqvvIYjiRzKTOEJAE7MalFNr40ycElJ8gZguXFk9++vNYr3fY/jnXRxqJEfrwGOP3ZQCGT66tPMr5gAxG5e4PYVOb6D+OeDjOfwTOvoqh3B/8fE5Qpo4jg96CLh4xujjsruFREJzOqB6R2eIuDjBy5i4MGiCa/0tX2NjeiDLXfof4oH0KDcx/MPH5/WsIRNb5P6Wq9CVnYkJVnbGqnW2O50xgi3mtHFnEPGP3o7sGSN0Re7z7RkZb+k08UIk254m/yOlDIlShkQpQ6KUIVHKmDPFX9Ip+HsehAunAAAAAElFTkSuQmCC" InformativeScreenshot="34c9269afd6960c063ecfadac646e86c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(4) 맥북 - YouTube' /&gt;" SearchSteps="FuzzySelector, Image">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="1606, 359, 39, 24" FriendlyName="'구분'" FullSelectorArgument="&lt;webctrl idx='2' parentid='filter-group-name' tag='YT-FORMATTED-STRING' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='filter-group-name' tag='YT-FORMATTED-STRING' aaname='구분' check:text='구분' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACsAAAAcCAYAAAD4IkbVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAADASURBVFhH7ZUxEsIgEEWd4YbMeAcP4AEyHCW5QTpbvIcFZTpLqs1OUMfEZQgmq0G3eNUH8lgWsvPeQymILBe/IGvBKAVqLvsaHLlOwDUaxxmwRDbibHCchvpCZMjiytpKZMn8g7K3lkkilQ2UJ3s8wZXI7mykDTpoD/iByhLZ+jzJZr6tMRjFMyobNqMbR2Sv5B19jHFLsMkmSVwmCpGdQj5vIvvgn2XfQGSnDLI4dzaRH0uG7PcRWS5ElouCZD3032f6XmbwlMoAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <Assign sap:VirtualizedContainerService.HintSize="412,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[pgDownCount]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:InterruptibleDoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="412,505" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
+                      <ui:InterruptibleDoWhile.Body>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,340" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" Shortcuts="[d(hk)][k(end)][u(hk)]" />
+                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[pgDownCount]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">[pgDownCount + 1]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ui:InterruptibleDoWhile.Body>
+                      <ui:InterruptibleDoWhile.Condition>
+                        <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="pgDownCount &lt;= 50" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
+                      </ui:InterruptibleDoWhile.Condition>
+                    </ui:InterruptibleDoWhile>
+                    <uix:NExtractData sap2010:Annotation.AnnotationText="" AppendResults="False" ContinueOnError="True" DataTable="[tempResult]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Title'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='View'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='Upload_Date'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Youtuber'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column5' Name='Youtuber_URL'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text' name2='Column1' attr2='href'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='yt-formatted-string' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ytd-video-meta-block' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='text'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ytd-video-meta-block' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='text' name2='Column5' attr2='href'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='ytd-channel-name' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='yt-formatted-string' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="412,197" sap2010:WorkflowViewState.IdRef="NExtractData_2" MaximumResults="0">
+                      <uix:NExtractData.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="532, -92791, 1096, 98999" FriendlyName="'DIV contents'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;ytd-app&amp;gt;div&amp;gt;ytd-page-manager&amp;gt;ytd-search&amp;gt;div&amp;gt;ytd-two-column-search-results-renderer&amp;gt;div&amp;gt;ytd-section-list-renderer&amp;gt;div' id='contents' tag='DIV' /&gt;" InformativeScreenshot="5a815b383a2bcef8d2e902ef26d88c6b.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(4) 노트북 - YouTube' /&gt;" SearchSteps="Selector" />
+                      </uix:NExtractData.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NExtractData>
+                    <ui:WriteRange AddHeaders="True" DataTable="[tempResult]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="412,115" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[row(&quot;Keyword&quot;).ToString]" StartingCell="A1" WorkbookPath="keywords.xlsx" />
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[tempResult]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="412,237" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+                      <ui:ForEachRow.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="242,116" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="KeywordResult">
+                              <ui:AddQueueItem.ItemInformation>
+                                <InArgument x:TypeArguments="x:String" x:Key="Title">[item(0).ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="URL">[item(1).ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="View">[item(2).ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="UploadDate">[item(3).ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Youtuber">[item(4).ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Youtuber_URL">[item(5).ToString]</InArgument>
+                              </ui:AddQueueItem.ItemInformation>
+                            </ui:AddQueueItem>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEachRow.Body>
+                    </ui:ForEachRow>
+                    <ui:ClearDataTable DataTable="[tempResult]" DisplayName="Clear Data Table" sap:VirtualizedContainerService.HintSize="412,22" sap2010:WorkflowViewState.IdRef="ClearDataTable_2" />
                   </Sequence>
                 </ActivityAction>
               </uix:NApplicationCard.Body>
               <uix:NApplicationCard.TargetApp>
-                <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAACUSURBVDhPpZIBDYAgEEUvAhGMQAQiEIEIRiASEYxik+8d4ER3OBG3p/iPvY3jCMAUajjC9UNkGFeJHc66uQuIQl6OEYqAyDbhKFYE/hGOEEQgZ9OKwL4Dzum1QnwXnE9KwLJoez4Ktu2nQI7gvV4rZEG/iYavW8svchMnr5E/vJgYJH5VSTvKKyO9edIZ5QnU8DugAz5ePeeqirlIAAAAAElFTkSuQmCC" InformativeScreenshot="d1810ad5e7f00ab2783931a8e96a2746.png" Selector="&lt;html app='chrome.exe' title='(36) YouTube'/&gt;" Url="[&quot;https://www.youtube.com&quot; + row(&quot;URL&quot;).ToString]" />
+                <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAACUSURBVDhPpZIBDYAgEEUvAhGMQAQiEIEIRiASEYxik+8d4ER3OBG3p/iPvY3jCMAUajjC9UNkGFeJHc66uQuIQl6OEYqAyDbhKFYE/hGOEEQgZ9OKwL4Dzum1QnwXnE9KwLJoez4Ktu2nQI7gvV4rZEG/iYavW8svchMnr5E/vJgYJH5VSTvKKyO9edIZ5QnU8DugAz5ePeeqirlIAAAAAElFTkSuQmCC" InformativeScreenshot="d1810ad5e7f00ab2783931a8e96a2746.png" Selector="&lt;html app='chrome.exe' title='(36) YouTube'/&gt;" Url="https://www.youtube.com/" />
               </uix:NApplicationCard.TargetApp>
             </uix:NApplicationCard>
           </Sequence>
