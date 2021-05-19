@@ -2,19 +2,35 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Animate css</title>
+        <title>InfList - 영향력 있는 사람찾기</title>
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <!-- animate.css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <!-- fullpage.css -->
+        <link rel="stylesheet" href="css/jquery.fullpage.css" />
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+        <!-- Black Hans Sans-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
         
         <!----- jquery ----->
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <!-- full page -->
+        <script src="js/jquery.fullpage.js"></script>
+        <script src="js/main.js"></script>
 
         <style>
+            .section {
+                background:url('img/section1.png')
+            }
             .moving_bg {
                 width: 100vw; height: 100vh;
-                background:url('./img/test.png') repeat-y;
+                background:url('./img/main_bg.png') repeat-y;
                 animation: move_bg 40s linear infinite;
             }
 
@@ -22,11 +38,88 @@
                 0% {background-position:0 2400px;}
                 100% {background-position:0 0px;}
             }
+
+            .animate__fadeInDown {
+                animation-duration: 2s;
+            }
+
+            .animate__fadeIn {
+                animation-delay: 2s;
+            }
+
+            .animate__fadeInUp {
+                animation-duration: 2s;
+            }
+
+            .animate__heartBeat {
+                animation-delay: 1s;
+            }
+
+            .title {
+                width: 20vw;
+                margin-left: 40vw;
+                margin-top: 0vw;
+                text-align: center;
+                font-family: 'Black Han Sans', sans-serif;
+                font-size : 5vw;
+                color : #8b9bff;
+                border: 10px solid white;
+            }
+
+            .subtitle {
+                font-size : 5vh;
+                text-align: center;
+                color : white;
+                font-family: 'Black Han Sans', sans-serif;
+            }
+
+            #section1 {
+                margin-left: 15vw
+            }
+
+            body {
+                color : white;
+                font-family: 'Black Han Sans', sans-serif;
+            }
         </style>
     </head>
-    <body>
-        <div class="moving_bg container">
-            
-        </div>
+    <body style="overflow-x:hidden">
+        <main id="fullpage">
+            <section class="section moving_bg container">
+                <h1 class="title animate__animated animate__fadeInDown">InfList</h1>
+                <h2 class="subtitle animate__animated animate__fadeIn">영향력 있는 사람을 찾아보세요</h2>
+                <button type="button" class="animate__animated animate__fadeIn btn btn-light" style="margin-left:47vw;">시작하기</button>
+            </section>
+            <section class="section">
+                <section id="section1" class="animate__animated" data-effect="animate__fadeInUp">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="img/cook.png">
+                        </div>
+                        <div class="col-md-8">
+                            <h2 style="font-size: 6vw; color: #8b9bff">InfList</h2>
+                            <h3 style="font-size: 3vw; display: inline-block;">
+                                요즘
+                            </h3>
+                            <h3 id="h3_1" style="font-size: 3vw; color:red; display: inline-block;" class="animate__animated" data-effect="animate__heartBeat">
+                                hot한
+                            </h3>
+                            <h3 style="font-size: 3vw; display: inline-block;">
+                                유튜버를 찾아드립니다.
+                            </h3>
+                            <h3 style="font-size: 3vw">
+                                당신에게 필요한 사람을 찾아보세요.
+                            </h3>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section class="section">
+                <h2>section3</h2>
+            </section>
+            <section class="section">
+                <h2>section4</h2>
+            </section>
+        </main>
     </body>
 </html>
