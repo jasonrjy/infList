@@ -10,7 +10,7 @@
         <!-- animate.css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <!-- fullpage.css -->
-        <link rel="stylesheet" href="css/jquery.fullpage.css" />
+        <link rel="stylesheet" href="jquery.fullpage.css" />
         <!-- font -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
@@ -21,16 +21,15 @@
         <!----- jquery ----->
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <!-- full page -->
-        <script src="js/jquery.fullpage.js"></script>
-        <script src="js/main.js"></script>
-
+        <script src="jquery.fullpage.js"></script>
+        <script src="main.js"></script>
         <style>
             .section {
-                background:url('img/section1.png')
+                background:url('section1.png')
             }
             .moving_bg {
                 width: 100vw; height: 100vh;
-                background:url('./img/main_bg.png') repeat-y;
+                background:url('main_bg.png') repeat-y;
                 animation: move_bg 40s linear infinite;
             }
 
@@ -56,14 +55,9 @@
             }
 
             .title {
-                width: 20vw;
-                margin-left: 40vw;
+                width: 25vw;
+                margin-left: 37vw;
                 margin-top: 0vw;
-                text-align: center;
-                font-family: 'Black Han Sans', sans-serif;
-                font-size : 5vw;
-                color : #8b9bff;
-                border: 10px solid white;
             }
 
             .subtitle {
@@ -81,23 +75,34 @@
                 color : white;
                 font-family: 'Black Han Sans', sans-serif;
             }
+
+            #fp-nav ul li a span, .fp-slidesNav ul li a span {
+                background: white;
+            }
+
         </style>
+
+        <script>
+            function movePage() {
+                location.href="/main";
+            }
+        </script>
     </head>
     <body style="overflow-x:hidden">
         <main id="fullpage">
             <section class="section moving_bg container">
-                <h1 class="title animate__animated animate__fadeInDown">InfList</h1>
+                <img src="logo.png" class="title animate__animated animate__fadeInDown" />
                 <h2 class="subtitle animate__animated animate__fadeIn">영향력 있는 사람을 찾아보세요</h2>
-                <button type="button" class="animate__animated animate__fadeIn btn btn-light" style="margin-left:47vw;">시작하기</button>
+                <button id="main_btn" type="button" class="animate__animated animate__fadeIn btn btn-light btn-lg" style="margin-left:47vw; color: black" onclick="movePage()">시작하기</button>
             </section>
             <section class="section">
                 <section id="section1" class="animate__animated" data-effect="animate__fadeInUp">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="img/cook.png">
+                            <img src="cook.png">
                         </div>
                         <div class="col-md-8">
-                            <h2 style="font-size: 6vw; color: #8b9bff">InfList</h2>
+                            <img src="logo.png" style="width:30vw"\><br><br>
                             <h3 style="font-size: 3vw; display: inline-block;">
                                 요즘
                             </h3>
