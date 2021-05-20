@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head http-equiv="page-exit" content="blendTrans(duration=1)">
         <meta charset="utf-8">
         <title>InfList - 영향력 있는 사람찾기</title>
         <!-- bootstrap -->
@@ -38,6 +38,18 @@
                 100% {background-position:0 0px;}
             }
 
+            .pt-page-scaleUp {
+                -webkit-animation: scaleUp .7s ease both;
+                animation: scaleUp .7s ease both;
+            }
+
+            @-webkit-keyframes scaleUp {
+                from { opacity: 0; -webkit-transform: scale(.8); }
+            }
+            @keyframes scaleUp {
+                from { opacity: 0; -webkit-transform: scale(.8); transform: scale(.8); }
+            }
+
             .animate__fadeInDown {
                 animation-duration: 2s;
             }
@@ -72,6 +84,7 @@
             }
 
             body {
+                background-color: #1b1b1b;
                 color : white;
                 font-family: 'Black Han Sans', sans-serif;
             }
@@ -79,16 +92,15 @@
             #fp-nav ul li a span, .fp-slidesNav ul li a span {
                 background: white;
             }
-
         </style>
 
         <script>
             function movePage() {
-                location.href="/main";
+                location.href="/search"; 
             }
         </script>
     </head>
-    <body style="overflow-x:hidden">
+    <body id="body" class="animate__animated" data-effect="animate__zoomOut" style="overflow-x:hidden">
         <main id="fullpage">
             <section class="section moving_bg container">
                 <img src="logo.png" class="title animate__animated animate__fadeInDown" />

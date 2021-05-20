@@ -14,8 +14,8 @@ app.get('/', (req, res, next) => {
   return res.status(200).send(indexPage.toString());
 });
 
-app.get('/main', function(req, res) {
-  fs.readFile('html/main.html', function(error, data) {
+app.get('/search', function(req, res) {
+  fs.readFile('html/search.html', function(error, data) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(data);
   });
