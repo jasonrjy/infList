@@ -7,7 +7,9 @@ const app = express();
 app.use(express.static('app'))
 app.use(express.static('img'))
 app.use(express.static('css'))
-app.use(express.static('js'))
+app.use('/img', express.static(path.join(__dirname,'/../img')))
+app.use('/css', express.static(path.join(__dirname,'/../css')))
+app.use('/js', express.static(path.join(__dirname,'/../js')))
 
 app.get('/', (req, res, next) => {
   const indexPage = fs.readFileSync('./index.html');
