@@ -1,13 +1,14 @@
 const express = require('express');
 const fs = require('fs');
+const path = require('path')
 
 const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.static('app'))
-app.use(express.static('img'))
-app.use(express.static('css'))
-app.use(express.static('js'))
+app.use(express.static(path.join(__dirname, 'img')))
+app.use(express.static(path.join(__dirname, 'css')))
+app.use(express.static(path.join(__dirname, 'js')))
 
 app.get('/', (req, res, next) => {
   const indexPage = fs.readFileSync('./index.html');
