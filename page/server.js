@@ -6,9 +6,7 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.static('app'))
-app.use(express.static(path.join(__dirname, 'img')))
-app.use(express.static(path.join(__dirname, 'css')))
-app.use(express.static(path.join(__dirname, 'js')))
+app.use(express.static('public'))
 
 app.get('/', (req, res, next) => {
   const indexPage = fs.readFileSync('./index.html');
@@ -16,7 +14,7 @@ app.get('/', (req, res, next) => {
 });
 
 app.get('/search', function(req, res) {
-  fs.readFile('html/search.html', function(error, data) {
+  fs.readFile('public/html/search.html', function(error, data) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(data);
   });
