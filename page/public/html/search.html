@@ -89,18 +89,29 @@
                 location.href="/"; 
             }
 
-            /* 엑셀 파일 읽어보기 */
-            var reader = new FileReader();
-            reader.onload() = function() {
-                var fileData = reader.result;
-                var wb = XLSX.read(fileData, {type : 'binary'});
-                wb.SheetNames.forEach(function(sheetName) {
-                    var rowObj = XLSX.utils.sheet_to_json(wb.Sheets[sheetName]);
-                    console.log(JSON.stringify(rowObj));
-                });
-            };
+            $(document).ready(function() {
+                function selectData() {
+                    $('#output').empty();
 
-            reader.readAsBinaryString(input.files[0]);
+                    $.getJSON('/content', function(data){
+                        $(data).each(function (index, item) {
+                            var output = '';
+                            output += '  <p>' + item.content_id + '</p>';
+                            output += '  <p>' + item.yt_name + '</p>';
+                            output += '  <p>' + item.yt_url + '</p>';
+                            output += '  <p>' + item.key_id + '</p>';
+                            output += '  <p>' + item.ER_Avg + '</p>';
+                            $('#output').append(output);
+                        })
+                    })
+                };
+
+                selectData();
+                
+                $.get("https://www.youtube.com/channel/UCcdlIcleb4oIK6of1ugSJ7w", function(data) {
+                    document.write(data);
+                })
+            });
         </script>
     </head>
     <body id="body">
@@ -121,8 +132,11 @@
         </section>
         <hr>
         <section id="sec_result">
-            <div class="row" style="width:60vw;">
+            <div id="output" class="row" style="width:60vw;">
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque fugit rem aliquid fugiat delectus minus eius accusamus maiores corrupti itaque reiciendis officia, cumque, accusantium sit necessitatibus expedita totam quos ipsam.</p>
+            </div>
+            <div id="div_test" style="width:60vw;">
+
             </div>
         </section>
     </body>

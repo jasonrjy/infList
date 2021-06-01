@@ -1,10 +1,11 @@
-const express = require('express');
-const fs = require('fs');
+const express = require('express')
+const cors = require('cors')
+const fs = require('fs')
 const path = require('path')
 
 const port = process.env.PORT || 8080;
 const app = express();
-
+app.use(cors())
 app.use(express.static('app'))
 app.use(express.static('public'))
 
@@ -19,6 +20,33 @@ app.get('/search', function(req, res) {
       res.end(data);
   });
 });
+
+/* read mysql */
+const mysql = require('mysql');
+const dbConfig = fs.readFileSync('./private.json')
+const conn = JSON.parse(dbConfig)
+var connection = mysql.createConnection({
+  host: conn.host,
+  port: conn.port,
+  user: conn.user,
+  password: conn.password,
+  database: conn.database
+})
+
+var connection = mysql.createConnection(conn);
+connection.connect(function(err) {
+  if (err) {
+    throw err;
+  } else {
+    console.log("db connect success")
+  }
+});
+
+app.get('/content', function(request, response) {
+  connection.query('SELECT * FROM content', function (error, data) {
+    response.send(data);
+  })
+})
 
 app.use((req, res, next) => {
   return res.status(404).send('Not found');

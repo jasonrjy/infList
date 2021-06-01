@@ -68,7 +68,6 @@
 
             .title {
                 width: 25vw;
-                margin-left: 37vw;
                 margin-top: 0vw;
             }
 
@@ -80,6 +79,10 @@
             }
 
             #section1 {
+                text-align: center;
+            }
+
+            #section2 {
                 margin-left: 15vw
             }
 
@@ -102,18 +105,18 @@
     </head>
     <body id="body" class="animate__animated" data-effect="animate__zoomOut" style="overflow-x:hidden">
         <main id="fullpage">
-            <section class="section moving_bg container">
+            <section id="section1" class="section moving_bg container">
                 <img src="img/logo.png" class="title animate__animated animate__fadeInDown" />
                 <h2 class="subtitle animate__animated animate__fadeIn">영향력 있는 사람을 찾아보세요</h2>
-                <button id="main_btn" type="button" class="animate__animated animate__fadeIn btn btn-light btn-lg" style="margin-left:47vw; color: black" onclick="movePage()">시작하기</button>
+                <button id="main_btn" type="button" class="animate__animated animate__fadeIn btn btn-light btn-lg" style="color: black" onclick="movePage()">시작하기</button>
             </section>
             <section class="section">
-                <section id="section1" class="animate__animated" data-effect="animate__fadeInUp">
+                <section id="section2" class="animate__animated" data-effect="animate__fadeInUp">
                     <div class="row">
                         <div class="col-md-4">
                             <img src="img/cook.png">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8" style="margin-top: 10vh;">
                             <img src="img/logo.png" style="width:30vw"\><br><br>
                             <h3 style="font-size: 3vw; display: inline-block;">
                                 요즘
