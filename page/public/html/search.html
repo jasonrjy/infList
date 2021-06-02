@@ -36,6 +36,10 @@
 
             }
 
+            a:link { color:black; text-decoration: none;}
+            a:visited { color: black; text-decoration: none;}
+            a:hover { color:black; text-decoration: none;}
+
             .row_top {
                 width: 100%;
                 margin-left: 20vw;
@@ -48,6 +52,7 @@
 
             .row_content {
                 height: 15vh;
+                margin-left: 5vw;
             }
 
             .container_search {
@@ -64,6 +69,16 @@
                 border-radius: 5px 0 0 5px;
                 outline: none;
                 width: 40vw;
+            }
+
+            .row_description {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 100%;
+                height: 100%;
+                display:block;
+                font-size: 14px;
             }
 
             .lens {
@@ -131,16 +146,34 @@
                                         contentType : "application/json",
                                         success : function(jd) {
                                             var items = jd.items[0];
-                                            // console.log(items)
-                                            output += `  <div class="col-md-1" style="height:100%; padding: 6vh 0px;">`;
-                                            output += `  <h4 style="text-align:center; margin: 0 auto;">${index+1}</h4>`;
-                                            output += `  </div>`;
-                                            output += '  <div class="col-md-4" style="height:100%; padding: 2.5vh 0px;">';
-                                            output += '    <div class="box">';
-                                            output += `      <img class="icon" src="${items.snippet.thumbnails.medium.url}" />`;
-                                            output += '    </div>';
-                                            output += '  </div>';
-
+                                            console.log(items)
+                                            output += ` <div class="col-md-1" style="height:100%; padding: 4vh 0px; text-align:center; font-size: 32px;">\
+                                                            <b>${index+1}</b>\
+                                                        </div>
+                                                        <div class="col-md-6" style="height:100%; padding: 2.5vh 0px;">\
+                                                            <div class="row"\>
+                                                                <div class="col-md-3">\
+                                                                    <div class="box">\
+                                                                        <div class="row">\
+                                                                            <a href="https://www.youtube.com/channel/${item.yt_url.substring(9)}">\
+                                                                                <img class="icon" src="${items.snippet.thumbnails.medium.url}" />\
+                                                                            </a>\
+                                                                        </div>\
+                                                                    </div>\
+                                                                </div>\
+                                                                <div class="col-md-9">\
+                                                                    <a href="https://www.youtube.com/channel/${item.yt_url.substring(9)}">\
+                                                                        <div class="row" style="font-size: 18px;">\
+                                                                            <b>${item.yt_name}</b>\
+                                                                        </div>\
+                                                                        <div class="row row_description">\
+                                                                            ${items.snippet.description}
+                                                                        </div>\
+                                                                    </a>\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                    `
                                             $.ajax({
                                                 type : "GET",
                                                 dataType : "JSON",
@@ -150,15 +183,34 @@
                                                 success : function(jsd) {
                                                     var it = jsd.items[0].statistics;
                                                     console.log(it);
-                                                    output += `  <div class="col-md-3">`;
-                                                    output += `     <h6 style="text-align:center; margin: 0 auto;">${it.subscriberCount}</h6>`;
-                                                    output += `  </div>`;
-                                                    output += '  <div class="col-md-4">';
-                                                    output += `     <h6 style="text-align:center; margin: 0 auto;">${it.viewCount}</h6>`;
-                                                    output += '  </div>';
-                                                    output += '</div>';
-                                                    
-
+                                                    output += `  <div class="col-md-5" style="padding: 1vh 0;">\
+                                                                    <div class="row">\
+                                                                        <div class="col-md-3">\
+                                                                            <b>구독자</b>\
+                                                                        </div>\
+                                                                        <div class="col-md-4">\
+                                                                            <h6 style="text-align:right; margin: 0 auto; ">${it.subscriberCount}</h6>\
+                                                                        </div>\
+                                                                    </div>\
+                                                                    <div class="row">\
+                                                                        <div class="col-md-3">\
+                                                                            <b>총조회수</b>\
+                                                                        </div>\
+                                                                        <div class="col-md-4">\
+                                                                            <h6 style="text-align:right; margin: 0 auto; ">${it.viewCount}</h6>\
+                                                                        </div>\
+                                                                    </div>\
+                                                                    <div class="row">\
+                                                                        <div class="col-md-3">\
+                                                                            <b>ER 지수</b>\
+                                                                        </div>\
+                                                                        <div class="col-md-4">\
+                                                                            <h6 style="text-align:right; margin: 0 auto; ">${item.ER_avg}</h6>\
+                                                                        </div>\
+                                                                    </div>\
+                                                                 </div>\
+                                                               </div>\
+                                                               <hr>`;
                                                     $('#div_output').append(output);
                                                 }
                                             })
@@ -203,9 +255,8 @@
                 </div>
             </div>
         </header>
-        <hr>
+        <hr style="background-color: black !important; height:0.1vh;">
         <section id="sec_result">
-            <hr style="background-color: black !important; height:0.1vh;">
             <div id="div_output" class="row row_content_box" style="width:60vw;">
             </div>
         </section>
