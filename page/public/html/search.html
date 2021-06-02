@@ -140,8 +140,6 @@
                                             output += `      <img class="icon" src="${items.snippet.thumbnails.medium.url}" />`;
                                             output += '    </div>';
                                             output += '  </div>';
-                                            
-                                            output += '</div>';
 
                                             $.ajax({
                                                 type : "GET",
@@ -158,6 +156,8 @@
                                                     output += '  <div class="col-md-4">';
                                                     output += `     <h6 style="text-align:center; margin: 0 auto;">${it.viewCount}</h6>`;
                                                     output += '  </div>';
+                                                    output += '</div>';
+                                                    
 
                                                     $('#div_output').append(output);
                                                 }
