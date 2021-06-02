@@ -1,13 +1,19 @@
 const express = require('express')
 const cors = require('cors')
+const request = require('request')
+const bodyParser = require('body-parser')
+const http = require('http')
 const fs = require('fs')
 const path = require('path')
 
 const port = process.env.PORT || 8080;
 const app = express();
+
 app.use(cors())
 app.use(express.static('app'))
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.get('/', (req, res, next) => {
   const indexPage = fs.readFileSync('./index.html');
@@ -23,6 +29,7 @@ app.get('/search', function(req, res) {
 
 /* read mysql */
 const mysql = require('mysql');
+const { response } = require('express')
 const dbConfig = fs.readFileSync('./private.json')
 const conn = JSON.parse(dbConfig)
 var connection = mysql.createConnection({
@@ -38,13 +45,33 @@ connection.connect(function(err) {
   if (err) {
     throw err;
   } else {
-    console.log("db connect success")
+    console.log("Database connect success")
   }
 });
 
+/* DB 테스트 */
 app.get('/content', function(request, response) {
   connection.query('SELECT * FROM content', function (error, data) {
     response.send(data);
+  })
+})
+
+/* 다른 사이트 데이터 가져오기 테스트*/
+// app.post('/channel', function(req, res) {
+//   var url = "https://www.youtube.com/channel/UCcdlIcleb4oIK6of1ugSJ7w";
+
+//   request(url, function(error, response, html) {
+//     res.send(html)
+//   })
+// })
+
+app.post('/keyword', function(req, res) {
+  var kw = req.body.keyword
+  
+  var qry = `SELECT * FROM keyword as k, content as c WHERE k.key_word = "${kw}" AND k.key_id = c.key_id`
+
+  connection.query(qry, function (error, data) {
+    res.json(data);
   })
 })
 

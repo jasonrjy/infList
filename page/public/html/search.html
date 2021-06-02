@@ -45,9 +45,18 @@
 
             }
 
-            .row {
+            .row_top {
                 width: 100%;
                 margin-left: 20vw;
+            }
+
+            .row_content_box {
+                margin-left: 10vw;
+                height: 70vh;
+            }
+
+            .row_content {
+                height: 15vh;
             }
 
             .container_search {
@@ -76,67 +85,133 @@
                 cursor: pointer;
             }
 
+            .box {
+                width: 5vw;
+                height: 5vw;
+                border-radius: 70%;
+                overflow: hidden;
+            }
+
+            .icon {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
             #sec_result {
-                width: 100vw;
+                margin-left: 10vw;
+                width: 80vw;
                 height: 75vh;
-                
-                background-color: #f2f2f2;
+            }
+
+            #div_output {
+
             }
         </style>
 
         <script>
-            function moveIndexPage() {
-                location.href="/"; 
-            }
-
             $(document).ready(function() {
-                function selectData() {
-                    $('#output').empty();
+                /*
+                function getYouTube() {
+                    $.ajax({
+                         type : "GET",
+                         dataType : "JSON",
+                         url : "https://www.googleapis.com/youtube/v3/channels?id=UCcdlIcleb4oIK6of1ugSJ7w&part=brandingSettings&key=AIzaSyDmrf3DxFShAiFtvapwqOtn_HMBgciQqqk",
+                         contentType : "application/json",
+                         success : function(jsonData) {
+                             for (var i = 0; i < jsonData.items.length; i++) {
+                                 var items = jsonData.items[i];
+                                 console.log(items);
+                             }
+                         },
+                         complete : function(data) {
+            
+                         },
+                         error : function(xhr, status, error) {
+                             console.log("유튜브 요청 에러: "+error);
+                         }
+                    });
+                }
+                getYouTube();
+                */
 
-                    $.getJSON('/content', function(data){
-                        $(data).each(function (index, item) {
-                            var output = '';
-                            output += '  <p>' + item.content_id + '</p>';
-                            output += '  <p>' + item.yt_name + '</p>';
-                            output += '  <p>' + item.yt_url + '</p>';
-                            output += '  <p>' + item.key_id + '</p>';
-                            output += '  <p>' + item.ER_Avg + '</p>';
-                            $('#output').append(output);
-                        })
-                    })
-                };
-
-                selectData();
-                
-                $.get("https://www.youtube.com/channel/UCcdlIcleb4oIK6of1ugSJ7w", function(data) {
-                    document.write(data);
+                // event binding
+                $("#logo").on("click", function() {
+                    location.href="/"; 
                 })
+                $("#btn_search").on("click", function(){
+                    var kw = $("#input_search").val();
+                    
+                    if (!kw) {
+                        alert('키워드를 입력해주세요');
+                    } else {
+                        $.ajax({
+                            url: "/keyword",
+                            async: true,
+                            type: "POST",
+                            data: {
+                                keyword: kw
+                            },
+                            dataType: "JSON",
+                            success : function(jsonData) {
+                                
+                                $(jsonData).each(function (index, item) {
+                                    var output = '';
+                                    output += '<div class="row row_content">'
+                                    //output += `<p> ${index+1}위 ${item.yt_name} ${item.yt_url} </p>`
+                                    $('#output').append(output);
+                                    $.ajax({
+                                        type : "GET",
+                                        dataType : "JSON",
+                                        url : `https://www.googleapis.com/youtube/v3/channels?id=${item.yt_url.substring(9)}&part=snippet&key=AIzaSyDmrf3DxFShAiFtvapwqOtn_HMBgciQqqk`,
+                                        async: false,
+                                        contentType : "application/json",
+                                        success : function(jd) {
+                                            var items = jd.items[0];
+                                            output += `  <div class="col-md-1" style="height:100%; padding: 6vh 0px;">`;
+                                            output += `  <h4 style="text-align:center; margin: 0 auto;">${index+1}</h4>`;
+                                            output += `  </div>`;
+                                            output += '  <div class="col-md-4" style="height:100%; padding: 2.5vh 0px;">';
+                                            output += '    <div class="box">';
+                                            output += `      <img class="icon" src="${items.snippet.thumbnails.medium.url}" />`;
+                                            output += '    </div>';
+                                            output += '  </div>';
+                                            
+                                            output += '</div>'
+                                            $('#div_output').append(output);
+                                        },
+                                        complete : function(data) {
+                           
+                                        },
+                                        error : function(xhr, status, error) {
+                                            console.log("유튜브 요청 에러: "+ error);
+                                        }
+                                   });
+                                })
+
+
+                            },
+                        });
+                    }
+                });
             });
         </script>
     </head>
     <body id="body">
         <header>
-            <div class="row">
+            <div class="row row_top">
                 <div class="col-md-4">
-                    <img style="height: 5vh; margin: 0 auto; cursor:pointer;" src="img/logo_main.png" onclick="moveIndexPage()">
+                    <img id="logo" style="height: 5vh; margin: 0 auto; cursor:pointer;" src="img/logo_main.png">
                 </div>
                 <div class="col-md-8 text-right container_search">
-                    <input style="text-indent: 1em" class="search_bar" type="text" placeholder="키워드로 검색 가능합니다." /><button type="submit" class="lens"><i class="fa fa-search"></i></button>
+                    <input id="input_search" style="text-indent: 1em" class="search_bar" type="text" placeholder="키워드로 검색 가능합니다." /><button id="btn_search" type="submit" class="lens"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </header>
         <hr>
-        <section>
-            <div class="row">
-            </div>
-        </section>
-        <hr>
         <section id="sec_result">
-            <div id="output" class="row" style="width:60vw;">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque fugit rem aliquid fugiat delectus minus eius accusamus maiores corrupti itaque reiciendis officia, cumque, accusantium sit necessitatibus expedita totam quos ipsam.</p>
-            </div>
-            <div id="div_test" style="width:60vw;">
-
+            <hr style="background-color: black !important; height:0.05vh;">
+            <div id="div_output" class="row row_content_box" style="width:60vw;">
             </div>
         </section>
     </body>
