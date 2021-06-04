@@ -13,6 +13,13 @@ $(function(){
                 sectionEffect = $('#h3_1').attr('data-effect');
                 $('#h3_1').addClass(sectionEffect);
             }
+
+            if (index==2 && direction =='down') {
+                var sectionEffect = $('#section3').attr('data-effect');
+                $('#section3').addClass(sectionEffect);
+                var sectionEffect = $('#div_search_img').attr('data-effect');
+                $('#div_search_img').addClass(sectionEffect);
+            }
         }
 	});
 });

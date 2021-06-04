@@ -85,6 +85,13 @@
             #section2 {
                 margin-left: 15vw
             }
+            #section4 {
+                text-align: center;
+            }
+
+            #div_search_img {
+                animation-delay: 0.5s;
+            }
 
             body {
                 background-color: #1b1b1b;
@@ -135,10 +142,27 @@
                 </section>
             </section>
             <section class="section">
-                <h2>section3</h2>
+                <section id="section3" class="animate__animated" data-effect="animate__fadeInUp">
+                    <div class="row">
+                        <div class="col-md-4" style="margin-top: 10vh; margin-left: 15vw;">
+                            <h3 style="font-size: 3vw; color:#596fff; display: inline;" class="animate__animated" data-effect="animate__heartBeat">
+                                키워드
+                            </h3>
+                            <h3 style="font-size: 3vw; display: inline;">
+                                로 원하는 주제를<br>검색해보세요.
+                            </h3>
+                        </div>
+                        <div id="div_search_img" class="col-md-3 animate__animated" style="margin-top: 5vh;" data-effect="animate__fadeInDownBig">
+                            <img src="img/search_ex.png">
+                        </div>
+                    </div>
+                </section>
             </section>
             <section class="section">
-                <h2>section4</h2>
+                <section id="section4">
+                    <h2 class="subtitle animate__animated animate__fadeIn">영향력 있는 사람을 찾아보세요</h2>
+                    <button id="main_btn" type="button" class="animate__animated animate__fadeIn btn btn-light btn-lg" style="color: black" onclick="movePage()">시작하기</button>
+                </section>
             </section>
         </main>
     </body>

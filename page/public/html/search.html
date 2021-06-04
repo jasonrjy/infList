@@ -119,10 +119,34 @@
         <script>
             $(document).ready(function() {
                 function getKeywordInfo() {
+                    var maskHeight = $(document).height();
+                    var maskWidth  = window.document.body.clientWidth;
+
+                    var mask       ="<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
+                    var loadingImg ='';
+                    var gif = "img/searching.gif";
+                
+                    loadingImg +=" <img src='"+ gif +"' style='position: absolute; display: block; margin: 0px auto;'/>";
+            
+                    $('body').append(mask)
+                    $('#mask').css({
+                        'width' : maskWidth,
+                        'height': maskHeight,
+                        'opacity' :'0.3'
+                    });
+                    $('#mask').show();
+                    $('#loading_img').append(loadingImg);
+                    $('#loading_img').show();
+
+                    setTimeout(function() {
+                        $('#mask, #loading_img').hide();
+                        $('#mask, #loading_img').empty(); 
+                    }, 1000);
+
                     var kw = $("#input_search").val();
                     $("#div_output").empty();
                     if (!kw) {
-                        alert('키워드를 입력해주세요');
+                        alert('키워드를 입력해주세요.');
                     } else {
                         $.ajax({
                             url: "/keyword",
@@ -183,10 +207,10 @@
                                                 success : function(jsd) {
                                                     var it = jsd.items[0].statistics;
                                                     console.log(it);
-                                                    output += `  <div class="col-md-5" style="padding: 1vh 0;">\
+                                                    output += `  <div class="col-md-5" style="padding: 3vh 0;">\
                                                                     <div class="row">\
                                                                         <div class="col-md-3">\
-                                                                            <b>구독자</b>\
+                                                                            <b>구독자수</b>\
                                                                         </div>\
                                                                         <div class="col-md-4">\
                                                                             <h6 style="text-align:right; margin: 0 auto; ">${it.subscriberCount}</h6>\
@@ -229,7 +253,6 @@
                             },
                         });
                     }
-                
                 }
                 // event binding
                 $("#logo").on("click", function() {
@@ -251,12 +274,15 @@
                     <img id="logo" style="height: 5vh; margin: 0 auto; cursor:pointer;" src="img/logo_main.png">
                 </div>
                 <div class="col-md-8 text-right container_search">
-                    <input id="input_search" style="text-indent: 1em; width: 80%; display: inline-block;" class="form-control" type="text" placeholder="키워드로 검색 가능합니다." /><button id="btn_search" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    <input id="input_search" style="text-indent: 0.5em; width: 80%; display: inline-block;" class="form-control" type="text" placeholder="키워드로 검색 가능합니다." /><button id="btn_search" style="margin-top:-5px;" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </header>
         <hr style="background-color: black !important; height:0.1vh;">
         <section id="sec_result">
+            <div id="loading_img" style="position:absolute; margin-left: 35vw;">
+
+            </div>
             <div id="div_output" class="row row_content_box" style="width:60vw;">
             </div>
         </section>
