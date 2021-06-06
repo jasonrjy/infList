@@ -135,8 +135,13 @@
                     $('#loading_img').show();
 
                     setTimeout(function() {
-                        $('#mask, #loading_img, #div_output').hide();
-                        $('#mask, #loading_img, #div_output').empty(); 
+                        $('#mask, #loading_img').hide();
+                        $('#mask, #loading_img').empty(); 
+
+                        if (is_loaded) {
+                            $('#no_content').hide();
+                            $('#no_content').empty(); 
+                        }
                     }, 1000);
 
                     kw = $("#input_search").val();
@@ -250,7 +255,7 @@
 
                         if (!is_loaded) {
                             setTimeout(function() {
-                                var img_sry = `<div style='text-align:center; margin-top: 10vh'>\
+                                var img_sry = `<div id="no_content" style='text-align:center; margin-top: 10vh'>\
                                                  <img src='img/sorry.png' style='width:10vw; height:10vw;'/>\
                                                  <br>\
                                                  <br>\
