@@ -59,7 +59,7 @@ app.get('/content', function(request, response) {
 app.post('/keyword', function(req, res) {
   var kw = req.body.keyword
   
-  var qry = `SELECT * FROM keyword as k, content as c WHERE k.key_word = "${kw}" AND k.key_id = c.key_id`
+  var qry = `SELECT * FROM keyword as k, content as c WHERE k.key_word = "${kw}" AND k.key_id = c.key_id LIMIT 5`
 
   connection.query(qry, function (error, data) {
     res.json(data);
