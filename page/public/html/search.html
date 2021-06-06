@@ -250,31 +250,32 @@
 
 
                             },
+                            complete : function(data) {
+                                if (!is_loaded) {
+                                    setTimeout(function() {
+                                        var img_sry = `<div id="no_content" style='text-align:center; margin-top: 10vh'>\
+                                                         <img src='img/sorry.png' style='width:10vw; height:10vw;'/>\
+                                                         <br>\
+                                                         <br>\
+                                                         <h2 style="font-family: 'Black Han Sans', sans-serif;"">찾으시는 데이터가 없어요...</h2>\
+                                                         <h2 style="font-family: 'Black Han Sans', sans-serif;"">이메일을 알려주시면 결과가 나올때 알려드릴게요</h2>\
+                                                         <input id="input_email" style="text-indent: 0.5em; width: 25%; display: inline-block;" class="form-control" type="text" placeholder="abc@email.com" /><button id="btn_submit" style="margin-top:-5px;" type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i></button>
+                                                       </div>`
+                                        $('#div_output').append(img_sry);
+                                        $('#div_output').show();
+                                        $("#btn_submit").on("click", function(){
+                                            postKeyword();
+                                        });
+                                        /*
+                                        $("#input_email").on("keyup", function(e) {
+                                            if (e.keyCode == 13) postKeyword();
+                                        })
+                                        */
+                                    }, 1000);
+                                }
+                            }
                         
                         });
-
-                        if (!is_loaded) {
-                            setTimeout(function() {
-                                var img_sry = `<div id="no_content" style='text-align:center; margin-top: 10vh'>\
-                                                 <img src='img/sorry.png' style='width:10vw; height:10vw;'/>\
-                                                 <br>\
-                                                 <br>\
-                                                 <h2 style="font-family: 'Black Han Sans', sans-serif;"">찾으시는 데이터가 없어요...</h2>\
-                                                 <h2 style="font-family: 'Black Han Sans', sans-serif;"">이메일을 알려주시면 결과가 나올때 알려드릴게요</h2>\
-                                                 <input id="input_email" style="text-indent: 0.5em; width: 25%; display: inline-block;" class="form-control" type="text" placeholder="abc@email.com" /><button id="btn_submit" style="margin-top:-5px;" type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i></button>
-                                               </div>`
-                                $('#div_output').append(img_sry);
-                                $('#div_output').show();
-                                $("#btn_submit").on("click", function(){
-                                    postKeyword();
-                                });
-                                /*
-                                $("#input_email").on("keyup", function(e) {
-                                    if (e.keyCode == 13) postKeyword();
-                                })
-                                */
-                            }, 1000);
-                        }
                     }
                 }
                 // event binding
