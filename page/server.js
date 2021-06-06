@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
+const fetch = require("node-fetch")
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -49,21 +50,11 @@ connection.connect(function(err) {
   }
 });
 
-/* DB 테스트 */
 app.get('/content', function(request, response) {
   connection.query('SELECT * FROM content', function (error, data) {
     response.send(data);
   })
 })
-
-/* 다른 사이트 데이터 가져오기 테스트*/
-// app.post('/channel', function(req, res) {
-//   var url = "https://www.youtube.com/channel/UCcdlIcleb4oIK6of1ugSJ7w";
-
-//   request(url, function(error, response, html) {
-//     res.send(html)
-//   })
-// })
 
 app.post('/keyword', function(req, res) {
   var kw = req.body.keyword
@@ -74,6 +65,52 @@ app.post('/keyword', function(req, res) {
     res.json(data);
   })
 })
+
+// app.post('/postKeyword', function(req, res) {
+//     var access_token;
+//     // get token
+//     let url = new URL("https://account.uipath.com/oauth/token");
+//     var requestOption = {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json",
+//             "X-UIPATH-TenantName" : "DefaultTenant"
+//         },
+//         body: JSON.stringify({
+//           "grant_type": "refresh_token",
+//           "client_id" : "123",
+//           "refresh_token" : "123"
+//         })
+//     }
+//     fetch(url.toString(), requestOption).then((res) => {
+//         return res.json()
+//     }).then((data) => {
+//         url = new URL("https://cloud.uipath.com/knuodbfjqm/DefaultTenant/odata/Queues/UiPathODataSvc.AddQueueItem");
+//         requestOption = {
+//             method: 'POST',
+//             headers: {
+//                 "Content-Type": "application/json; charset=utf-8",
+//                 "X-UIPATH-OrganizationUnitId" : "1292787",
+//                 "Authorization" : data.access_token
+//             },
+//             body: JSON.stringify({
+//                 "itemData": {
+//                     "Priority": "Normal",
+//                     "Name": "keywordQ",
+//                     "SpecificContent": {
+//                         "Type": "subject",
+//                         "Keyword": req.body.keyword,
+//                     }
+//             }
+//             })
+//         }
+//         fetch(url.toString(), requestOption).then((res) => {
+//             return res.json()
+//         }).then((data) => {
+//             console.log(data)
+//         })
+//       })
+// })
 
 app.use((req, res, next) => {
   return res.status(404).send('Not found');

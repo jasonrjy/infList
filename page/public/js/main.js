@@ -20,6 +20,13 @@ $(function(){
                 var sectionEffect = $('#div_search_img').attr('data-effect');
                 $('#div_search_img').addClass(sectionEffect);
             }
+
+            if (index==3 && direction == 'down') {
+                var sectionEffect = $('#section4').attr('data-effect');
+                $('#section4').addClass(sectionEffect);
+                var sectionEffect = $('#logo_sec4').attr('data-effect');
+                $('#logo_sec4').addClass(sectionEffect);
+            }
         }
 	});
 });

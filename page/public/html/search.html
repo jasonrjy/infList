@@ -16,7 +16,6 @@
         <!-- Black Hans Sans-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         
@@ -110,13 +109,10 @@
                 width: 80vw;
                 height: 75vh;
             }
-
-            #div_output {
-
-            }
         </style>
 
         <script>
+            var kw;
             $(document).ready(function() {
                 function getKeywordInfo() {
                     var maskHeight = $(document).height();
@@ -143,11 +139,12 @@
                         $('#mask, #loading_img').empty(); 
                     }, 1000);
 
-                    var kw = $("#input_search").val();
+                    kw = $("#input_search").val();
                     $("#div_output").empty();
                     if (!kw) {
                         alert('키워드를 입력해주세요.');
                     } else {
+                        var is_loaded = false;
                         $.ajax({
                             url: "/keyword",
                             async: true,
@@ -157,7 +154,6 @@
                             },
                             dataType: "JSON",
                             success : function(jsonData) {
-                                
                                 $(jsonData).each(function (index, item) {
                                     var output = '';
                                     output += '<div class="row row_content">'
@@ -169,8 +165,8 @@
                                         async: false,
                                         contentType : "application/json",
                                         success : function(jd) {
+                                            is_loaded = true;
                                             var items = jd.items[0];
-                                            console.log(items)
                                             output += ` <div class="col-md-1" style="height:100%; padding: 4vh 0px; text-align:center; font-size: 32px;">\
                                                             <b>${index+1}</b>\
                                                         </div>
@@ -179,14 +175,14 @@
                                                                 <div class="col-md-3">\
                                                                     <div class="box">\
                                                                         <div class="row">\
-                                                                            <a href="https://www.youtube.com/channel/${item.yt_url.substring(9)}">\
+                                                                            <a href="https://www.youtube.com/channel/${item.yt_url.substring(9)}" target="_blank">\
                                                                                 <img class="icon" src="${items.snippet.thumbnails.medium.url}" />\
                                                                             </a>\
                                                                         </div>\
                                                                     </div>\
                                                                 </div>\
                                                                 <div class="col-md-9">\
-                                                                    <a href="https://www.youtube.com/channel/${item.yt_url.substring(9)}">\
+                                                                    <a href="https://www.youtube.com/channel/${item.yt_url.substring(9)}" target="_blank">\
                                                                         <div class="row" style="font-size: 18px;">\
                                                                             <b>${item.yt_name}</b>\
                                                                         </div>\
@@ -206,7 +202,6 @@
                                                 contentType : "application/json",
                                                 success : function(jsd) {
                                                     var it = jsd.items[0].statistics;
-                                                    console.log(it);
                                                     output += `  <div class="col-md-5" style="padding: 3vh 0;">\
                                                                     <div class="row">\
                                                                         <div class="col-md-3">\
@@ -241,7 +236,6 @@
                                             //$('#div_output').append(output);
                                         },
                                         complete : function(data) {
-                           
                                         },
                                         error : function(xhr, status, error) {
                                             console.log("유튜브 요청 에러: "+ error);
@@ -251,7 +245,31 @@
 
 
                             },
+                        
                         });
+
+                        if (!is_loaded) {
+                            setTimeout(function() {
+                                var img_sry = `<div style='text-align:center; margin-top: 10vh'>\
+                                                 <img src='img/sorry.png' style='width:10vw; height:10vw;'/>\
+                                                 <br>\
+                                                 <br>\
+                                                 <h2 style="font-family: 'Black Han Sans', sans-serif;"">찾으시는 데이터가 없어요...</h2>\
+                                                 <h2 style="font-family: 'Black Han Sans', sans-serif;"">이메일을 알려주시면 결과가 나올때 알려드릴게요</h2>\
+                                                 <input id="input_email" style="text-indent: 0.5em; width: 25%; display: inline-block;" class="form-control" type="text" placeholder="abc@email.com" /><button id="btn_submit" style="margin-top:-5px;" type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i></button>
+                                               </div>`
+                                $('#div_output').append(img_sry);
+                                $('#div_output').show();
+                                $("#btn_submit").on("click", function(){
+                                    postKeyword();
+                                });
+                                /*
+                                $("#input_email").on("keyup", function(e) {
+                                    if (e.keyCode == 13) postKeyword();
+                                })
+                                */
+                            }, 1000);
+                        }
                     }
                 }
                 // event binding
@@ -265,6 +283,20 @@
                     if (e.keyCode == 13) getKeywordInfo();
                 })
             });
+            
+            function postKeyword() {
+                $.ajax({
+                    url: "/postKeyword",
+                    async: true,
+                    type: "POST",
+                    data: {
+                        keyword: kw
+                    },
+                    dataType: "JSON",
+                    success : function(jsonData) {
+                    },
+                });
+            }
         </script>
     </head>
     <body id="body">

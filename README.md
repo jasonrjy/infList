@@ -22,9 +22,9 @@
 
 ## Todo
 ---
-- [ ] Data Collect
-- [ ] Data Analysis
-- [ ] Classify influencer
+- [x] Data Collect
+- [x] Data Analysis
+- [x] Classify influencer
 - [ ] Show out the result on Web
 
 ## Schedule
