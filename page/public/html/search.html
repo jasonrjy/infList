@@ -135,8 +135,8 @@
                     $('#loading_img').show();
 
                     setTimeout(function() {
-                        $('#mask, #loading_img').hide();
-                        $('#mask, #loading_img').empty(); 
+                        $('#mask, #loading_img', '#div_output').hide();
+                        $('#mask, #loading_img', '#div_output').empty(); 
                     }, 1000);
 
                     kw = $("#input_search").val();
