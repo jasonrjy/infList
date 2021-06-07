@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="시퀀스" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1036,896" sap2010:WorkflowViewState.IdRef="시퀀스_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="시퀀스" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1036,11856" sap2010:WorkflowViewState.IdRef="시퀀스_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="49">
+    <scg:List x:TypeArguments="x:String" Capacity="52">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -50,10 +50,13 @@
       <x:String>Microsoft.Exchange.WebServices.Data</x:String>
       <x:String>UiPath.Mail</x:String>
       <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Activities.Contracts</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="41">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="42">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -95,9 +98,10 @@
       <AssemblyReference>UiPath.Database</AssemblyReference>
       <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="youtube_step3" sap:VirtualizedContainerService.HintSize="480,691" sap2010:WorkflowViewState.IdRef="Sequence_8">
+  <Sequence DisplayName="Email" sap:VirtualizedContainerService.HintSize="868,12752" sap2010:WorkflowViewState.IdRef="Sequence_8">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="keywordDT" />
       <Variable x:TypeArguments="sd:DataTable" Name="tempResult" />
@@ -105,30 +109,23 @@
       <Variable x:TypeArguments="sd:DataRow[]" Name="data_to_del" />
       <Variable x:TypeArguments="x:Int32" Default="30" Name="limitpgDown" />
       <Variable x:TypeArguments="x:Int32" Default="10" Name="limitLoopCounter" />
-      <Variable x:TypeArguments="ui:QueueItem" Name="keywordQ" />
+      <Variable x:TypeArguments="ui:QueueItem" Name="webQ" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="438,266" sap2010:WorkflowViewState.IdRef="Comment_1" Text="tempResult = 검색 결과&#xA;&#xA;uniqueDT = 유튜버 count&#xA;Youtuber, Youtuber_URL, Repeat_Count, ER_Avg&#xA;&#xA;////&#xA;&#xA;videoDT = 유튜버별 동영상 리스트&#xA;Title, View, Upload&#xA;&#xA;detailVideoDT = 유튜버별 동영상 상세 정보&#xA;Title View Like Dislist Comment ER(int)&#xA;" />
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,293" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="826,266" sap2010:WorkflowViewState.IdRef="Comment_1" Text="tempResult = 검색 결과&#xA;&#xA;uniqueDT = 유튜버 count&#xA;Youtuber, Youtuber_URL, Repeat_Count, ER_Avg&#xA;&#xA;////&#xA;&#xA;videoDT = 유튜버별 동영상 리스트&#xA;Title, View, Upload&#xA;&#xA;detailVideoDT = 유튜버별 동영상 상세 정보&#xA;Title View Like Dislist Comment ER(int)&#xA;" />
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="826,12354" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_102">
+        <Sequence sap:VirtualizedContainerService.HintSize="788,12127" sap2010:WorkflowViewState.IdRef="Sequence_102">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" sap:VirtualizedContainerService.HintSize="746,22" sap2010:WorkflowViewState.IdRef="GetQueueItem_1" QueueType="KeywordQ" TransactionItem="[keywordQ]">
+          <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" sap:VirtualizedContainerService.HintSize="746,22" sap2010:WorkflowViewState.IdRef="GetQueueItem_1" QueueType="webQ" TransactionItem="[webQ]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -160,34 +157,34 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:CommentOut>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="746,13354" sap2010:WorkflowViewState.IdRef="Sequence_101">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="746,11763" sap2010:WorkflowViewState.IdRef="Sequence_101">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (36) YouTube" sap:VirtualizedContainerService.HintSize="704,2783" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="Simulate" IsIncognito="True" Version="V1">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (36) YouTube" sap:VirtualizedContainerService.HintSize="704,695" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="Simulate" IsIncognito="True" Version="V1">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="520,2567" sap2010:WorkflowViewState.IdRef="Sequence_76">
+                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="242,479" sap2010:WorkflowViewState.IdRef="Sequence_76">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Sequence DisplayName="Click FIlter" sap:VirtualizedContainerService.HintSize="478,1405" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                    <Sequence DisplayName="Click FIlter" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_66">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'INPUT search'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="436,226" sap2010:WorkflowViewState.IdRef="NTypeInto_5" Text="[keywordQ.SpecificContent(&quot;Keyword&quot;).ToString]">
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'INPUT search'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="436,226" sap2010:WorkflowViewState.IdRef="NTypeInto_5" Text="[webQ.SpecificContent(&quot;Keyword&quot;).ToString]">
                         <uix:NTypeInto.Target>
                           <uix:TargetAnchorable BrowserURL="https://www.youtube.com/" DesignTimeRectangle="627, 127, 531, 24" ElementType="InputBox" FriendlyName="'INPUT search'" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAhcAAAAcCAYAAADSgZ2iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF6SURBVHhe7drBjYJQEIDhrYGrRyvQCmzCGrxbgGe6ZjMmJE/2ocDOGmG/wxcMg179M4+vpmk6AIAs4gIASCUuAIBU4gIASCUuAIBU4gIASJUeF5fLpTufz9XZmNPp1F2v12632z18rj0LAHy2yXER0dC27Q+3263b7/cPzz2Li5gN5+ICALbjV5uLWgiICwD43xbHRfz5RwQMQ+FVXMQ8lPfEBQBsx+K4iAiII5HD4XC/lkclY3ERxyfx7PAoJX6r/L64AID1WhQXx+PxHghxHc6ebS76WSi3FzYXALAds+Oi3zLEtTavxUWEQgRDGQ3xXB8Y4gIAtmNyXIwdaQzV4qIMidp9cQEA2zEpLiIWnm0rAAB6s49FYtNQvnxZM9xc9PrtR+07JZsLAFivRXExFg/h1fwVxyIAsG7iAgBIJS4AgFRvfediCnEBAOs2Oy7+mrgAgHX7uLgAANZNXAAAqcQFAJBKXAAAqcQFAJBKXAAAqcQFAJCo6b4BCOs/VvQRimcAAAAASUVORK5CYII=" InformativeScreenshot="b3dab3ea49c7f9c19935e94e45fa2ed3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='YouTube' /&gt;" SearchSteps="FuzzySelector, Image">
                             <uix:TargetAnchorable.Anchors>
@@ -205,7 +202,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </uix:NTypeInto>
-                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,51" sap2010:WorkflowViewState.IdRef="CommentOut_12">
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,396" sap2010:WorkflowViewState.IdRef="CommentOut_12">
                         <ui:CommentOut.Body>
                           <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,318" sap2010:WorkflowViewState.IdRef="Sequence_64">
                             <sap:WorkflowViewStateService.ViewState>
@@ -226,12 +223,6 @@
                             </uix:NTypeInto>
                           </Sequence>
                         </ui:CommentOut.Body>
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
                       </ui:CommentOut>
                       <uix:NClick ClickType="Single" DisplayName="Click '검색'" sap:VirtualizedContainerService.HintSize="436,166" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left">
                         <uix:NClick.Target>
@@ -289,13 +280,13 @@
                         </uix:NClick.Target>
                       </uix:NClick>
                     </Sequence>
-                    <Sequence DisplayName="Page Down" sap:VirtualizedContainerService.HintSize="478,700" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                    <Sequence DisplayName="Page Down" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_68">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:Int32" Default="0" Name="pgDownCount" />
                       </Sequence.Variables>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -337,21 +328,21 @@
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:InterruptibleDoWhile>
                     </Sequence>
-                    <uix:NExtractData sap2010:Annotation.AnnotationText="" AppendResults="False" ContinueOnError="True" DataTable="[tempResult]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Title'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='View'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='Upload_Date'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Youtuber'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column5' Name='Youtuber_URL'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text' name2='Column1' attr2='href'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='yt-formatted-string' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ytd-video-meta-block' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='text'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ytd-video-meta-block' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='text' name2='Column5' attr2='href'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='ytd-channel-name' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='yt-formatted-string' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="478,197" sap2010:WorkflowViewState.IdRef="NExtractData_4" MaximumResults="0">
+                    <uix:NExtractData sap2010:Annotation.AnnotationText="" AppendResults="False" ContinueOnError="True" DataTable="[tempResult]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Title'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='View'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='Upload_Date'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='Youtuber'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column5' Name='Youtuber_URL'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text' name2='Column1' attr2='href'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='yt-formatted-string' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ytd-video-meta-block' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='text'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ytd-video-meta-block' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='text' name2='Column5' attr2='href'&gt;&lt;webctrl tag='ytd-item-section-renderer' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='ytd-video-renderer' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='ytd-channel-name' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='yt-formatted-string' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="200,82" sap2010:WorkflowViewState.IdRef="NExtractData_4" MaximumResults="0">
                       <uix:NExtractData.Target>
                         <uix:TargetAnchorable DesignTimeRectangle="532, -92791, 1096, 98999" FriendlyName="'DIV contents'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;ytd-app&amp;gt;div&amp;gt;ytd-page-manager&amp;gt;ytd-search&amp;gt;div&amp;gt;ytd-two-column-search-results-renderer&amp;gt;div&amp;gt;ytd-section-list-renderer&amp;gt;div' id='contents' tag='DIV' /&gt;" InformativeScreenshot="5a815b383a2bcef8d2e902ef26d88c6b.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(4) 노트북 - YouTube' /&gt;" SearchSteps="Selector" />
                       </uix:NExtractData.Target>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NExtractData>
-                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="478,51" sap2010:WorkflowViewState.IdRef="CommentOut_14">
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentOut_14">
                       <ui:CommentOut.Body>
-                        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="518,1649" sap2010:WorkflowViewState.IdRef="Sequence_75">
+                        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="518,1151" sap2010:WorkflowViewState.IdRef="Sequence_75">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -559,7 +550,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LogMessage>
-            <Sequence DisplayName="unique Count" sap:VirtualizedContainerService.HintSize="704,1902" sap2010:WorkflowViewState.IdRef="Sequence_83">
+            <Sequence DisplayName="unique Count" sap:VirtualizedContainerService.HintSize="704,1942" sap2010:WorkflowViewState.IdRef="Sequence_83">
               <Sequence.Variables>
                 <Variable x:TypeArguments="scg:List(x:Int32)" Name="count" />
                 <Variable x:TypeArguments="scg:List(x:Int32)" Name="accumView" />
@@ -653,13 +644,13 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                   </Sequence>
                 </ui:CommentOut.Body>
               </ui:CommentOut>
-              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[uniqueDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="512,611" sap2010:WorkflowViewState.IdRef="ForEachRow_28">
+              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[uniqueDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="512,651" sap2010:WorkflowViewState.IdRef="ForEachRow_28">
                 <ui:ForEachRow.Body>
                   <ActivityAction x:TypeArguments="sd:DataRow">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="478,491" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="478,531" sap2010:WorkflowViewState.IdRef="Sequence_81">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -687,7 +678,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                           </scg:List>
                         </ui:MultipleAssign.AssignOperations>
                       </ui:MultipleAssign>
-                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,230" sap2010:WorkflowViewState.IdRef="CommentOut_17">
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,270" sap2010:WorkflowViewState.IdRef="CommentOut_17">
                         <ui:CommentOut.Body>
                           <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_80">
                             <sap:WorkflowViewStateService.ViewState>
@@ -736,7 +727,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                 </ui:ForEachRow.Body>
               </ui:ForEachRow>
             </Sequence>
-            <Sequence DisplayName="Top Youtuber Search" sap:VirtualizedContainerService.HintSize="704,8133" sap2010:WorkflowViewState.IdRef="Sequence_93">
+            <Sequence DisplayName="Top Youtuber Search" sap:VirtualizedContainerService.HintSize="704,8024" sap2010:WorkflowViewState.IdRef="Sequence_93">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Int32" Name="loop_counter" />
                 <Variable x:TypeArguments="x:Int32" Name="prev_count" />
@@ -750,7 +741,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign sap:VirtualizedContainerService.HintSize="662,60" sap2010:WorkflowViewState.IdRef="Assign_44">
+              <Assign sap:VirtualizedContainerService.HintSize="588,60" sap2010:WorkflowViewState.IdRef="Assign_44">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:Int32">[prev_count]</OutArgument>
                 </Assign.To>
@@ -758,7 +749,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                   <InArgument x:TypeArguments="x:Int32">-1</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign sap:VirtualizedContainerService.HintSize="662,60" sap2010:WorkflowViewState.IdRef="Assign_45">
+              <Assign sap:VirtualizedContainerService.HintSize="588,60" sap2010:WorkflowViewState.IdRef="Assign_45">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:Int32">[loop_counter]</OutArgument>
                 </Assign.To>
@@ -766,13 +757,13 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                   <InArgument x:TypeArguments="x:Int32">0</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[uniqueDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="662,6715" sap2010:WorkflowViewState.IdRef="ForEachRow_32">
+              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[uniqueDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="662,6606" sap2010:WorkflowViewState.IdRef="ForEachRow_32">
                 <ui:ForEachRow.Body>
                   <ActivityAction x:TypeArguments="sd:DataRow">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="628,6595" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="628,6486" sap2010:WorkflowViewState.IdRef="Sequence_91">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="sd:DataTable" Name="videoDT" />
                         <Variable x:TypeArguments="sd:DataTable" Name="detailVideoDT" />
@@ -831,13 +822,13 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:LogMessage>
                       <ui:BuildDataTable DataTable="[detailVideoDT]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="586,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Title&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;200&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;View&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Like&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Dislike&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Comment&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ER&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-                      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (36) YouTube" sap:VirtualizedContainerService.HintSize="586,4703" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" InteractionMode="Simulate" IsIncognito="True" OutUiElement="[bro]" Version="V1">
+                      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (36) YouTube" sap:VirtualizedContainerService.HintSize="586,4594" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" InteractionMode="Simulate" IsIncognito="True" OutUiElement="[bro]" Version="V1">
                         <uix:NApplicationCard.Body>
                           <ActivityAction x:TypeArguments="x:Object">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                             </ActivityAction.Argument>
-                            <Sequence sap:VirtualizedContainerService.HintSize="552,4487" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                            <Sequence sap:VirtualizedContainerService.HintSize="552,4378" sap2010:WorkflowViewState.IdRef="Sequence_89">
                               <Sequence.Variables>
                                 <Variable x:TypeArguments="x:String" Name="subscriber" />
                                 <Variable x:TypeArguments="x:Double" Name="er_avg" />
@@ -887,7 +878,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                                   </Sequence>
                                 </ui:CommentOut.Body>
                               </ui:CommentOut>
-                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510,51" sap2010:WorkflowViewState.IdRef="CommentOut_22">
+                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,51" sap2010:WorkflowViewState.IdRef="CommentOut_22">
                                 <ui:CommentOut.Body>
                                   <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_105">
                                     <sap:WorkflowViewStateService.ViewState>
@@ -942,7 +933,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                               </ui:CommentOut>
-                              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="510,191" sap2010:WorkflowViewState.IdRef="MultipleAssign_23">
+                              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="436,191" sap2010:WorkflowViewState.IdRef="MultipleAssign_23">
                                 <ui:MultipleAssign.AssignOperations>
                                   <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                                     <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_49">
@@ -1021,13 +1012,13 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                                   </ActivityAction>
                                 </ui:ForEach.Body>
                               </ui:ForEach>
-                              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[videoDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="510,2806" sap2010:WorkflowViewState.IdRef="ForEachRow_30">
+                              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[videoDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="510,2697" sap2010:WorkflowViewState.IdRef="ForEachRow_30">
                                 <ui:ForEachRow.Body>
                                   <ActivityAction x:TypeArguments="sd:DataRow">
                                     <ActivityAction.Argument>
                                       <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                                     </ActivityAction.Argument>
-                                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="476,2685" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="476,2576" sap2010:WorkflowViewState.IdRef="Sequence_88">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="x:String" Name="d_title" />
                                         <Variable x:TypeArguments="x:String" Name="d_view" />
@@ -1163,27 +1154,54 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                                         </uix:NGetText.Text>
                                       </uix:NGetText>
                                       <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="434,148" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_7" Shortcuts="[d(hk)][k(pgdn)][u(hk)]" />
-                                      <uix:NGetText DisplayName="Get Text '개'" sap:VirtualizedContainerService.HintSize="334,166" sap2010:WorkflowViewState.IdRef="NGetText_11">
-                                        <uix:NGetText.Target>
-                                          <uix:TargetAnchorable BrowserURL="https://www.youtube.com/watch?v=O9f3gmxg2NI" DesignTimeRectangle="143, 635, 27, 19" ElementType="Text" FriendlyName="'137'" FullSelectorArgument="&lt;webctrl aaname='137' parentid='count' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='count' tag='SPAN' type='' /&gt;" InformativeScreenshot="c6539d4d053808bd7d8401de87be7f18.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='2021 &amp;apos;내돈내산&amp;apos; 반팔 대량 리뷰 !! ⭐️ - YouTube' /&gt;" SearchSteps="FuzzySelector">
-                                            <uix:TargetAnchorable.Anchors>
-                                              <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
-                                                <uix:Target DesignTimeRectangle="169, 633, 20, 23" ElementType="Text" FriendlyName="'개'" FullSelectorArgument="&lt;webctrl aaname='개' parentid='count' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='개' parentid='count' tag='SPAN' type='' check:text='개' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAYAAAALHW+jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACmSURBVEhL7ZHBDYQgEEUtg0qsaysw3KyE2MTe8GILWAU3b1+GdRWBmBG9KeYlME6ef7ASQuBOXuEREtoCpov3eypYDbkcZO+6kmWhG3rPFE5DmxQ3FIx7lN8zhd9PWlxpNOw6AVNYR4UQfwWjWs5MYVzYoHH/90dcFO7TET9JuPjCzrj2MB1RmpB+RPbrJUKfLN94XuiTxWOGlCQ85BVeF/J4nFBgBqJYCkKfQQOwAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
-                                                <uix:Target DesignTimeRectangle="105, 633, 40, 23" ElementType="Text" FriendlyName="'댓글'" FullSelectorArgument="&lt;webctrl aaname='댓글 ' parentid='count' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='댓글 ' parentid='count' tag='SPAN' type='' check:text='댓글' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAXCAYAAAB50g0VAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADzSURBVEhL7ZTtDYMgEEA7Bqt0j/7uAB3CsAxxEJxCp2CC80RI8Yre+REljZe8xMjXgzt4KKWgZG7BvfyZYN0CQAsmfjsLmvZBTIfduJgZSyGCGqwLE6QRJxMKsqwYmxVs6/RfwpGCncm3pTxfhQtiv0sEdYOLSATfny2CSUwEDapvibDhGa5J8QqygrlwjS5BkEEoKHoHJTWICAXH+pqkfscJii8JIhOsLAyZ92nOtRNOP8Hvgss3LjL0l26GgxUc5UYxnxqB5EmC4V2jdeYvCqlHgijFWDS2yo9P+RUM9cadVJRYEj0C2SW5kFtwL4ULKugBifsH+eg5O1QAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
-                                              </scg:List>
-                                            </uix:TargetAnchorable.Anchors>
-                                          </uix:TargetAnchorable>
-                                        </uix:NGetText.Target>
-                                        <uix:NGetText.Text>
-                                          <OutArgument x:TypeArguments="x:String">[d_comment]</OutArgument>
-                                        </uix:NGetText.Text>
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                      </uix:NGetText>
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,183" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                                        <TryCatch.Try>
+                                          <uix:NGetText DisplayName="Get Text '개'" sap:VirtualizedContainerService.HintSize="334,166" sap2010:WorkflowViewState.IdRef="NGetText_11">
+                                            <uix:NGetText.Target>
+                                              <uix:TargetAnchorable BrowserURL="https://www.youtube.com/watch?v=O9f3gmxg2NI" DesignTimeRectangle="143, 635, 27, 19" ElementType="Text" FriendlyName="'137'" FullSelectorArgument="&lt;webctrl aaname='137' parentid='count' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='count' tag='SPAN' type='' /&gt;" InformativeScreenshot="c6539d4d053808bd7d8401de87be7f18.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='2021 &amp;apos;내돈내산&amp;apos; 반팔 대량 리뷰 !! ⭐️ - YouTube' /&gt;" SearchSteps="FuzzySelector">
+                                                <uix:TargetAnchorable.Anchors>
+                                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
+                                                    <uix:Target DesignTimeRectangle="169, 633, 20, 23" ElementType="Text" FriendlyName="'개'" FullSelectorArgument="&lt;webctrl aaname='개' parentid='count' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='개' parentid='count' tag='SPAN' type='' check:text='개' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAYAAAALHW+jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACmSURBVEhL7ZHBDYQgEEUtg0qsaysw3KyE2MTe8GILWAU3b1+GdRWBmBG9KeYlME6ef7ASQuBOXuEREtoCpov3eypYDbkcZO+6kmWhG3rPFE5DmxQ3FIx7lN8zhd9PWlxpNOw6AVNYR4UQfwWjWs5MYVzYoHH/90dcFO7TET9JuPjCzrj2MB1RmpB+RPbrJUKfLN94XuiTxWOGlCQ85BVeF/J4nFBgBqJYCkKfQQOwAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                                                    <uix:Target DesignTimeRectangle="105, 633, 40, 23" ElementType="Text" FriendlyName="'댓글'" FullSelectorArgument="&lt;webctrl aaname='댓글 ' parentid='count' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='댓글 ' parentid='count' tag='SPAN' type='' check:text='댓글' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAXCAYAAAB50g0VAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADzSURBVEhL7ZTtDYMgEEA7Bqt0j/7uAB3CsAxxEJxCp2CC80RI8Yre+REljZe8xMjXgzt4KKWgZG7BvfyZYN0CQAsmfjsLmvZBTIfduJgZSyGCGqwLE6QRJxMKsqwYmxVs6/RfwpGCncm3pTxfhQtiv0sEdYOLSATfny2CSUwEDapvibDhGa5J8QqygrlwjS5BkEEoKHoHJTWICAXH+pqkfscJii8JIhOsLAyZ92nOtRNOP8Hvgss3LjL0l26GgxUc5UYxnxqB5EmC4V2jdeYvCqlHgijFWDS2yo9P+RUM9cadVJRYEj0C2SW5kFtwL4ULKugBifsH+eg5O1QAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                                  </scg:List>
+                                                </uix:TargetAnchorable.Anchors>
+                                              </uix:TargetAnchorable>
+                                            </uix:NGetText.Target>
+                                            <uix:NGetText.Text>
+                                              <OutArgument x:TypeArguments="x:String">[d_comment]</OutArgument>
+                                            </uix:NGetText.Text>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </uix:NGetText>
+                                        </TryCatch.Try>
+                                        <TryCatch.Catches>
+                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ActivityAction x:TypeArguments="s:Exception">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                              </ActivityAction.Argument>
+                                              <Assign sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="Assign_54">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:String">[d_comment]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:String">0</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                            </ActivityAction>
+                                          </Catch>
+                                        </TryCatch.Catches>
+                                      </TryCatch>
                                       <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,51" sap2010:WorkflowViewState.IdRef="CommentOut_23">
                                         <ui:CommentOut.Body>
                                           <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,258" sap2010:WorkflowViewState.IdRef="Sequence_106">
@@ -1414,15 +1432,19 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
               <ui:DatabaseConnect DatabaseConnection="[DBC]" DisplayName="Connect" sap:VirtualizedContainerService.HintSize="662,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="MySql.Data.MySqlClient" ConnectionString="server=keyword-db2.ce0xzmadej7w.ap-northeast-2.rds.amazonaws.com; UID=ordinary; PASSWORD=ACmw964099!#; DATABASE=keyword_db; PORT=3306;" />
               <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Query" ExistingDbConnection="[DBC]" sap:VirtualizedContainerService.HintSize="662,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="INSERT INTO keyword(key_word) VALUES(@Keyword)">
                 <ui:ExecuteQuery.Parameters>
-                  <InArgument x:TypeArguments="x:String" x:Key="Keyword">[keywordQ.SpecificContent("Keyword").ToString]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Keyword">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="webQ.SpecificContent(&quot;Keyword&quot;).ToString" />
+                  </InArgument>
                 </ui:ExecuteQuery.Parameters>
               </ui:ExecuteQuery>
               <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[keywordID]" DisplayName="Execute Query" ExistingDbConnection="[DBC]" sap:VirtualizedContainerService.HintSize="662,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="SELECT key_id FROM keyword WHERE key_word =@Keyword">
                 <ui:ExecuteQuery.Parameters>
-                  <InArgument x:TypeArguments="x:String" x:Key="Keyword">[keywordQ.SpecificContent("Keyword").ToString]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Keyword">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="webQ.SpecificContent(&quot;Keyword&quot;).ToString" />
+                  </InArgument>
                 </ui:ExecuteQuery.Parameters>
               </ui:ExecuteQuery>
-              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[uniqueDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="588,578" sap2010:WorkflowViewState.IdRef="ForEachRow_33">
+              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[uniqueDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="662,578" sap2010:WorkflowViewState.IdRef="ForEachRow_33">
                 <ui:ForEachRow.Body>
                   <ActivityAction x:TypeArguments="sd:DataRow">
                     <ActivityAction.Argument>
@@ -1451,7 +1473,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                   </ActivityAction>
                 </ui:ForEachRow.Body>
               </ui:ForEachRow>
-              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="588,51" sap2010:WorkflowViewState.IdRef="CommentOut_24">
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="662,51" sap2010:WorkflowViewState.IdRef="CommentOut_24">
                 <ui:CommentOut.Body>
                   <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,207" sap2010:WorkflowViewState.IdRef="Sequence_107">
                     <sap:WorkflowViewStateService.ViewState>
@@ -1470,9 +1492,44 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                 </sap:WorkflowViewStateService.ViewState>
               </ui:CommentOut>
             </Sequence>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="630,51" sap2010:WorkflowViewState.IdRef="CommentOut_20">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="704,526" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,299" sap2010:WorkflowViewState.IdRef="Sequence_108">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="PwD" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAv1mUtKoNWEaftjjQieWkFAAAAAACAAAAAAAQZgAAAAEAACAAAAAnPSyq/8EOHoLJe6R6R2q4NtxUBwbUul8IO2d9PEOYlQAAAAAOgAAAAAIAACAAAAARIzPr4EXSe1f/StPXTBwOYI0w7fDTynBoHJk5BdqwzBAAAAAeT/98aR03uNp9L2OyHqdEQAAAAAJj4qlS5aLYmfIMxmC8SfZRSzAAcqi5GRlYi+7xlWDomkoOvE3QN+yFgQqREEJP671RvPA3JEqm57624AF6bEE=" Result="[PwD]" />
+                  <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="[webQ.SpecificContent(&quot;Email&quot;).ToString + &quot; 의 결과가 나왔습니다!!&quot;]" DisplayName="Send SMTP Mail Message" Email="jasonrjy@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Password="[PwD]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="InFlist가 완료되었습니다!" To="[webQ.SpecificContent(&quot;Email&quot;).ToString]">
+                    <ui:SendMail.Files>
+                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                    </ui:SendMail.Files>
+                  </ui:SendMail>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="704,51" sap2010:WorkflowViewState.IdRef="CommentOut_20">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="762,2184" sap2010:WorkflowViewState.IdRef="Sequence_100">
+                <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="762,2224" sap2010:WorkflowViewState.IdRef="Sequence_100">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1633,7 +1690,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
               </sap:WorkflowViewStateService.ViewState>
             </ui:CommentOut>
           </Sequence>
-          <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="746,79" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_2" Status="Successful" TransactionItem="[keywordQ]">
+          <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="746,79" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_2" Status="Successful" TransactionItem="[webQ]">
             <ui:SetTransactionStatus.Analytics>
               <scg:Dictionary x:TypeArguments="x:String, InArgument" />
             </ui:SetTransactionStatus.Analytics>
@@ -1644,7 +1701,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="792,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1661,7 +1718,7 @@ Convert.ToDouble(row("View").ToString.Replace("조회수 ", "").Replace("천회"
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Application" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_3" Reason="[Ex.Message]" Status="Failed" TransactionItem="[keywordQ]">
+              <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Application" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_3" Reason="[Ex.Message]" Status="Failed" TransactionItem="[webQ]">
                 <ui:SetTransactionStatus.Analytics>
                   <scg:Dictionary x:TypeArguments="x:String, InArgument" />
                 </ui:SetTransactionStatus.Analytics>
